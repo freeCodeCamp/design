@@ -1,8 +1,10 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
-import { SITE, nonComponentItems } from '../lib/registry';
+import { nonComponentItems } from '../lib/registry';
+import { resolveSite } from '../lib/site';
 
-export const GET: APIRoute = async () => {
+export const GET: APIRoute = async context => {
+  const site = resolveSite(context);
   const components = await getCollection('components');
   components.sort((a, b) => a.id.localeCompare(b.id));
 
@@ -21,13 +23,13 @@ export const GET: APIRoute = async () => {
   lines.push('## Start here');
   lines.push('');
   lines.push(
-    `- [Starter guide](${SITE}/registry/starter.md) - bootstrap a project: theme, fonts, directory layout, AGENTS.md snippet.`
+    `- [Starter guide](${site}/registry/starter.md) - bootstrap a project: theme, fonts, directory layout, AGENTS.md snippet.`
   );
   lines.push(
-    `- [Theme](${SITE}/registry/theme.md) - tokens.css + base.css. Required by every component. Edit token values to recolour; keep token names.`
+    `- [Theme](${site}/registry/theme.md) - tokens.css + base.css. Required by every component. Edit token values to recolour; keep token names.`
   );
   lines.push(
-    `- [Machine index](${SITE}/registry/index.json) - every item, its files (raw URLs) and dependencies, as JSON.`
+    `- [Machine index](${site}/registry/index.json) - every item, its files (raw URLs) and dependencies, as JSON.`
   );
   lines.push('');
 
@@ -39,7 +41,7 @@ export const GET: APIRoute = async () => {
   lines.push('');
   for (const c of components) {
     lines.push(
-      `- [${c.data.title}](${SITE}/components/${c.id}.md) - ${c.data.summary}`
+      `- [${c.data.title}](${site}/components/${c.id}.md) - ${c.data.summary}`
     );
   }
   lines.push('');
@@ -48,26 +50,26 @@ export const GET: APIRoute = async () => {
   lines.push('');
   for (const item of nonComponentItems()) {
     lines.push(
-      `- [${item.title}](${SITE}${item.docsPath}) - ${item.description}`
+      `- [${item.title}](${site}${item.docsPath}) - ${item.description}`
     );
   }
   lines.push('');
 
   lines.push('## Human surfaces');
   lines.push('');
-  lines.push(`- [Landing](${SITE}/) - overview + quickstart.`);
+  lines.push(`- [Landing](${site}/) - overview + quickstart.`);
   lines.push(
-    `- [Playground](${SITE}/playground) - every component, paired code.`
+    `- [Playground](${site}/playground) - every component, paired code.`
   );
   lines.push(
-    `- [Handbook](${SITE}/handbook) - design philosophy, tokens, brand, install, CDN, Tailwind, recipes, contributing.`
+    `- [Handbook](${site}/handbook) - design philosophy, tokens, brand, install, CDN, Tailwind, recipes, contributing.`
   );
   lines.push('');
 
   lines.push('## Concatenated dump');
   lines.push('');
   lines.push(
-    `- [llms-full.txt](${SITE}/llms-full.txt) - every component page incl. full source, single file.`
+    `- [llms-full.txt](${site}/llms-full.txt) - every component page incl. full source, single file.`
   );
   lines.push('');
 

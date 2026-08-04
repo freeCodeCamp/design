@@ -44,7 +44,12 @@ const jsSrc = resolve(repoRoot, 'packages', 'uikit-js', 'src');
 const tailwindSrc = resolve(repoRoot, 'packages', 'uikit-tailwind', 'src');
 const showcaseDir = resolve(appRoot, 'src', 'showcase');
 
-export const SITE = 'https://design.freecodecamp.org';
+/**
+ * Canonical prod origin. Prefer `resolveSite(context)` from ./site in
+ * endpoints so dev/preview hosts stay dynamic; this static export is the
+ * build/prod fallback and the value tests assert against.
+ */
+export { CANONICAL_SITE as SITE } from './site';
 
 export interface RegistryFile {
   /** File name as served, e.g. `Button.tsx`. */

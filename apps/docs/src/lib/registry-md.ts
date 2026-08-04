@@ -14,6 +14,9 @@ import {
   type RegistryItem
 } from './registry';
 
+/** Absolute-URL origin; defaults to the canonical prod host. */
+type SiteArg = string;
+
 export interface ComponentPageMeta {
   slug: string;
   title: string;
@@ -27,11 +30,13 @@ export interface ComponentPageMeta {
   prose: string;
 }
 
-const AGENT_FOOTER = [
-  '## For coding agents',
-  '',
-  `This library is distributed as copyable source, not an npm package. Start at ${SITE}/registry/starter.md, discover components via ${SITE}/llms.txt, and copy files into the consuming project. Keep token names intact; recolour by editing the copied tokens.css.`
-].join('\n');
+function agentFooter(site: string): string {
+  return [
+    '## For coding agents',
+    '',
+    `This library is distributed as copyable source, not an npm package. Start at ${site}/registry/starter.md, discover components via ${site}/llms.txt, and copy files into the consuming project. Keep token names intact; recolour by editing the copied tokens.css.`
+  ].join('\n');
+}
 
 function fence(lang: string, code: string): string {
   return `\`\`\`${lang}\n${code.replace(/\n+$/, '')}\n\`\`\``;
@@ -53,7 +58,7 @@ export function dropEmptySections(md: string): string {
   return out.trim();
 }
 
-function depsSection(item: RegistryItem): string[] {
+function depsSection(item: RegistryItem, site: string): string[] {
   const lines: string[] = [];
   lines.push(
     `- npm dependencies: ${item.npmDependencies.length ? item.npmDependencies.map(d => `\`${d}\``).join(', ') : 'none'}`
@@ -65,8 +70,8 @@ function depsSection(item: RegistryItem): string[] {
           // Components document at /components/<slug>.md; everything else
           // (theme, icons, shared hooks) at /registry/<name>.md.
           const url = componentSource(dep)
-            ? `${SITE}/components/${dep}.md`
-            : `${SITE}/registry/${dep}.md`;
+            ? `${site}/components/${dep}.md`
+            : `${site}/registry/${dep}.md`;
           return `[${dep}](${url})`;
         })
         .join(', ')}`
@@ -74,12 +79,15 @@ function depsSection(item: RegistryItem): string[] {
   }
   lines.push('- Files:');
   for (const f of item.files) {
-    lines.push(`  - \`${f.name}\` → \`${f.target}\` (raw: ${SITE}${f.url})`);
+    lines.push(`  - \`${f.name}\` → \`${f.target}\` (raw: ${site}${f.url})`);
   }
   return lines;
 }
 
-export function renderComponentPage(meta: ComponentPageMeta): string {
+export function renderComponentPage(
+  meta: ComponentPageMeta,
+  site: SiteArg = SITE
+): string {
   const item = componentItem(meta.slug, {
     title: meta.title,
     summary: meta.summary,
@@ -97,14 +105,14 @@ export function renderComponentPage(meta: ComponentPageMeta): string {
   );
   if (meta.a11yPattern) lines.push(`- A11y pattern: ${meta.a11yPattern}`);
   if (meta.tokens?.length) lines.push(`- Tokens: ${meta.tokens.join(', ')}`);
-  lines.push(`- Playground: ${SITE}/playground#${meta.slug}`);
-  if (item) lines.push(...depsSection(item));
+  lines.push(`- Playground: ${site}/playground#${meta.slug}`);
+  if (item) lines.push(...depsSection(item, site));
   lines.push('');
 
   lines.push('## Install (copy source)');
   lines.push('');
   lines.push(
-    `1. Ensure the theme is installed once per project - tokens.css + base.css imported globally, fonts available. See ${SITE}/registry/theme.md and ${SITE}/registry/starter.md.`
+    `1. Ensure the theme is installed once per project - tokens.css + base.css imported globally, fonts available. See ${site}/registry/theme.md and ${site}/registry/starter.md.`
   );
   if (item) {
     lines.push(
@@ -159,12 +167,12 @@ export function renderComponentPage(meta: ComponentPageMeta): string {
     lines.push(fence('html', html));
     lines.push('');
     lines.push(
-      `Interactive behaviours for plain HTML come from the vanilla runtime (data-uikit-* attributes): ${SITE}/registry/vanilla.md - or via CDN: ${SITE}/cdn/uikit.global.js`
+      `Interactive behaviours for plain HTML come from the vanilla runtime (data-uikit-* attributes): ${site}/registry/vanilla.md - or download ${site}/cdn/uikit.global.js once and self-host it (do not hotlink).`
     );
     lines.push('');
   }
 
-  lines.push(AGENT_FOOTER);
+  lines.push(agentFooter(site));
   lines.push('');
   return lines.join('\n');
 }
@@ -172,14 +180,15 @@ export function renderComponentPage(meta: ComponentPageMeta): string {
 /** Generic page for non-component items (theme, icons, vanilla, ...). */
 export function renderItemPage(
   item: RegistryItem,
-  opts: { intro?: string[]; skipSources?: Set<string>; outro?: string[] } = {}
+  opts: { intro?: string[]; skipSources?: Set<string>; outro?: string[] } = {},
+  site: SiteArg = SITE
 ): string {
   const lines: string[] = [];
   lines.push(`# ${item.title}`);
   lines.push('');
   lines.push(`> ${item.description}`);
   lines.push('');
-  lines.push(...depsSection(item));
+  lines.push(...depsSection(item, site));
   lines.push('');
   if (opts.intro?.length) {
     lines.push(...opts.intro);
@@ -189,7 +198,7 @@ export function renderItemPage(
     if (opts.skipSources?.has(f.name)) {
       lines.push(`## Source: ${f.name}`);
       lines.push('');
-      lines.push(`Too large to inline - fetch the raw file: ${SITE}${f.url}`);
+      lines.push(`Too large to inline - fetch the raw file: ${site}${f.url}`);
       lines.push('');
       continue;
     }
@@ -202,7 +211,7 @@ export function renderItemPage(
     lines.push(...opts.outro);
     lines.push('');
   }
-  lines.push(AGENT_FOOTER);
+  lines.push(agentFooter(site));
   lines.push('');
   return lines.join('\n');
 }

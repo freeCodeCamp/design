@@ -5,15 +5,15 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import {
-  SITE,
   componentItem,
   iconSvgNames,
   nonComponentItems,
   registryVersion,
   type RegistryItem
 } from '../../lib/registry';
+import { resolveSite } from '../../lib/site';
 
-function serialize(item: RegistryItem) {
+function serialize(item: RegistryItem, site: string) {
   return {
     name: item.name,
     kind: item.kind,
@@ -25,13 +25,14 @@ function serialize(item: RegistryItem) {
     files: item.files.map(f => ({
       name: f.name,
       target: f.target,
-      url: `${SITE}${f.url}`
+      url: `${site}${f.url}`
     })),
-    docs: `${SITE}${item.docsPath}`
+    docs: `${site}${item.docsPath}`
   };
 }
 
-export const GET: APIRoute = async () => {
+export const GET: APIRoute = async context => {
+  const site = resolveSite(context);
   const components = await getCollection('components');
   components.sort((a, b) => a.id.localeCompare(b.id));
 
@@ -50,15 +51,15 @@ export const GET: APIRoute = async () => {
 
   const body = {
     name: 'freecodecamp-uikit',
-    homepage: SITE,
+    homepage: site,
     version: registryVersion(),
-    llms: `${SITE}/llms.txt`,
-    starter: `${SITE}/registry/starter.md`,
+    llms: `${site}/llms.txt`,
+    starter: `${site}/registry/starter.md`,
     icons: {
       names: iconSvgNames(),
-      svgUrlTemplate: `${SITE}/registry/icons/svg/{name}.svg`
+      svgUrlTemplate: `${site}/registry/icons/svg/{name}.svg`
     },
-    items: items.map(serialize)
+    items: items.map(item => serialize(item, site))
   };
 
   return new Response(JSON.stringify(body, null, 2), {

@@ -1,6 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import AppHeader from '../components/site/AppHeader.astro';
+import { resolveHost } from '../lib/site';
+
+const host = resolveHost(Astro);
 ---
 
 <BaseLayout
@@ -26,7 +29,7 @@ import AppHeader from '../components/site/AppHeader.astro';
               free to use.
             </p>
             <p class='hero__hint'>
-              <code>design.freecodecamp.org/llms.txt</code>
+              <code>{`${host}/llms.txt`}</code>
             </p>
             <p>
               Components ship as source - copy them into your project (or point
@@ -68,7 +71,7 @@ import AppHeader from '../components/site/AppHeader.astro';
                   18+ peer. You own the code.
                 </p>
                 <pre
-                  class='surfaces__code'><code>{'design.freecodecamp.org/components/button.md\nimport { Button } from \'./ui/button/Button\';'}</code></pre>
+                  class='surfaces__code'><code>{`${host}/components/button.md\nimport { Button } from './ui/button/Button';`}</code></pre>
               </li>
               <li class='surfaces__card'>
                 <p class='surfaces__kicker'>02 · HTML</p>
@@ -76,10 +79,10 @@ import AppHeader from '../components/site/AppHeader.astro';
                   &lt;button class="btn btn--cta"&gt;
                 </h3>
                 <p class='surfaces__lede'>
-                  Drop-in vanilla CSS + 3 KB runtime. No framework required.
+                  Drop-in vanilla CSS + 3 KB runtime. Download once, self-host.
                 </p>
                 <pre
-                  class='surfaces__code'><code>{'<link rel="stylesheet"\n  href="design.freecodecamp.org/cdn/styles.min.css">'}</code></pre>
+                  class='surfaces__code'><code>{`<!-- download once from\n     ${host}/cdn/styles.min.css -->\n<link rel="stylesheet" href="/styles.min.css">`}</code></pre>
               </li>
               <li class='surfaces__card'>
                 <p class='surfaces__kicker'>03 · Tailwind</p>
@@ -89,7 +92,7 @@ import AppHeader from '../components/site/AppHeader.astro';
                   fcc-light.
                 </p>
                 <pre
-                  class='surfaces__code'><code>{'// copy preset.ts + plugin.ts from\n// design.freecodecamp.org/registry/tailwind.md\nexport default { presets: [fcc] };'}</code></pre>
+                  class='surfaces__code'><code>{`// copy preset.ts + plugin.ts from\n// ${host}/registry/tailwind.md\nexport default { presets: [fcc] };`}</code></pre>
               </li>
             </ul>
           </section>

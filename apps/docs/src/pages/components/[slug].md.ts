@@ -2,6 +2,7 @@ import type { APIRoute, GetStaticPaths } from 'astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { stripMdx } from '../../lib/strip-mdx';
 import { renderComponentPage } from '../../lib/registry-md';
+import { resolveSite } from '../../lib/site';
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const components = await getCollection('components');
@@ -11,20 +12,25 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }));
 };
 
-export const GET: APIRoute = async ({ props }) => {
-  const { entry } = props as { entry: CollectionEntry<'components'> };
+export const GET: APIRoute = async context => {
+  const { entry } = context.props as {
+    entry: CollectionEntry<'components'>;
+  };
 
-  const page = renderComponentPage({
-    slug: entry.id,
-    title: entry.data.title,
-    summary: entry.data.summary,
-    status: entry.data.status,
-    since: entry.data.since,
-    category: entry.data.category,
-    tokens: entry.data.tokens,
-    a11yPattern: entry.data.a11yPattern,
-    prose: stripMdx(entry.body ?? '')
-  });
+  const page = renderComponentPage(
+    {
+      slug: entry.id,
+      title: entry.data.title,
+      summary: entry.data.summary,
+      status: entry.data.status,
+      since: entry.data.since,
+      category: entry.data.category,
+      tokens: entry.data.tokens,
+      a11yPattern: entry.data.a11yPattern,
+      prose: stripMdx(entry.body ?? '')
+    },
+    resolveSite(context)
+  );
 
   return new Response(page, {
     headers: { 'Content-Type': 'text/plain; charset=utf-8' }

@@ -5,6 +5,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import AppHeader from '../components/site/AppHeader.astro';
 import { HandbookSidebar } from '../components/handbook/HandbookSidebar';
 import Brand from '../components/handbook/Brand.astro';
+import { resolveSite, resolveHost } from '../lib/site';
+
+const site = resolveSite(Astro);
+const host = resolveHost(Astro);
 
 const foundationId = (id: string): string => (id === 'colors' ? 'palette' : id);
 
@@ -24,7 +28,7 @@ const foundationSections = await Promise.all(
 
 const implementationLinks = [
   { id: 'install', label: 'Install' },
-  { id: 'cdn', label: 'CDN' },
+  { id: 'cdn', label: 'Bundle' },
   { id: 'tailwind', label: 'Tailwind' },
   { id: 'recipes', label: 'Recipes' },
   { id: 'contributing', label: 'Contributing' }
@@ -47,7 +51,7 @@ const handbookSections = [
 
 <BaseLayout
   title='freeCodeCamp UIKit - Handbook'
-  description='One-page reference - palette, typography, spacing, iconography, motion, voice, brand, install, CDN, overview, contributing.'
+  description='One-page reference - palette, typography, spacing, iconography, motion, voice, brand, install, bundle, overview, contributing.'
 >
   <div class='app' id='top'>
     <AppHeader />
@@ -71,8 +75,9 @@ const handbookSections = [
             <h1 class='hero__title'>One page. Every rule.</h1>
             <p class='hero__lede'>
               Everything a builder needs to ship fluently with freeCodeCamp
-              UIKit - tokens, type, motion, voice, brand, install, CDN, and how
-              to contribute. Use the handbook navigation to jump between rules.
+              UIKit - tokens, type, motion, voice, brand, install, bundle, and
+              how to contribute. Use the handbook navigation to jump between
+              rules.
             </p>
           </section>
 
@@ -118,7 +123,7 @@ const handbookSections = [
                 Grab the files from the component page (or the raw URLs it
                 lists) and import its CSS once, globally.
               </p>
-              <pre><code>{`# design.freecodecamp.org/components/button.md
+              <pre><code>{`# ${host}/components/button.md
 src/ui/button/Button.tsx
 src/ui/button/button.css`}</code></pre>
             </Panel>
@@ -147,25 +152,30 @@ src/ui/button/button.css`}</code></pre>
           </section>
 
           <section class='section handbook-section' id='cdn'>
-            <p class='section__eyebrow'>CDN</p>
-            <h2 class='section__title'>Use via CDN</h2>
+            <p class='section__eyebrow'>Bundle</p>
+            <h2 class='section__title'>Download &amp; self-host the bundle</h2>
             <p class='section__lede'>
-              One <code>@import</code> line pulls every token, every component class,
-              and every font. Fonts resolve relative to the stylesheet URL.
+              {host} is not a CDN - do not hotlink assets from it. Download the bundle
+              once and serve it from your own host. One stylesheet carries every token,
+              every component class, and every <code>@font-face</code>. Font
+              URLs are relative (<code>./fonts/*</code>), so keep the
+              <code>fonts/</code> folder beside the stylesheet.
             </p>
-            <Panel title='CSS @import'>
-              <pre><code>{`@import url('https://design.freecodecamp.org/cdn/styles.min.css');`}</code></pre>
+            <Panel title='1. Download once (styles + fonts)'>
+              <pre><code>{`curl -O ${site}/cdn/styles.min.css
+# fonts referenced by the bundle (relative ./fonts/*):
+mkdir -p fonts && (cd fonts \\
+  && curl -O ${site}/cdn/fonts/Lato-Regular.woff \\
+  && curl -O ${site}/cdn/fonts/Hack-ZeroSlash-Regular.woff2)
+# full file list + SRI hashes: ${site}/cdn/manifest.json`}</code></pre>
             </Panel>
-            <Panel title='Or the <link> tag'>
-              <pre><code>{`<link
-  rel="stylesheet"
-  href="https://design.freecodecamp.org/cdn/styles.min.css"
-  crossorigin="anonymous"
-/>`}</code></pre>
+            <Panel title='2. Reference your own copy'>
+              <pre><code>{`<link rel="stylesheet" href="/styles.min.css" />`}</code></pre>
             </Panel>
             <p>
-              This URL is rolling, not version-pinned - it always serves the
-              bundle built from the current <code>main</code>.
+              The <code>{host}</code> bundle is rolling, not version-pinned - it always
+              reflects the current <code>main</code>. Your downloaded copy is
+              your pin; re-download to update.
             </p>
           </section>
 
