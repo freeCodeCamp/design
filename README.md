@@ -7,9 +7,9 @@
 [![Node](https://img.shields.io/badge/node-%3E%3D22-brightgreen)](./.nvmrc)
 [![pnpm](https://img.shields.io/badge/pnpm-10-orange)](./package.json)
 
-Design system, React component library, vanilla-JS adapter, and CDN bundle that power the freeCodeCamp.org platform. Built CSS-first with design tokens and accessibility-tested against the WAI-ARIA Authoring Practices.
+Design system, React component library, and vanilla-JS adapter that power the freeCodeCamp.org platform. Built CSS-first with design tokens and accessibility-tested against the WAI-ARIA Authoring Practices.
 
-UIKit is distributed as a **copy-source registry** (shadcn-style): components are copied from [design.freecodecamp.org](https://design.freecodecamp.org) into your project's source and tailored there - nothing installs from npm. It is built to be equally usable by humans and LLM coding agents: point an agent at [design.freecodecamp.org/llms.txt](https://design.freecodecamp.org/llms.txt) and it can discover, copy, and adapt any component.
+UIKit is distributed as a **copy-source registry** (shadcn-style): components are copied from [design.freecodecamp.org](https://design.freecodecamp.org) into your project's source and tailored there - nothing installs from npm, nothing is packaged. It is built to be equally usable by humans and LLM coding agents: point an agent at [design.freecodecamp.org/llms.txt](https://design.freecodecamp.org/llms.txt) and it can discover, copy, and adapt any component.
 
 ## Packages
 
@@ -25,35 +25,13 @@ All workspaces are private - they are the source of truth the registry serves, n
 
 ## Quick start
 
-### CDN - drop one line into any HTML
-
-```html
-<link
-  rel="stylesheet"
-  href="https://design.freecodecamp.org/cdn/styles.min.css"
-/>
-<script
-  src="https://design.freecodecamp.org/cdn/uikit.global.js"
-  defer
-></script>
-```
-
-Use BEM class names anywhere:
-
-```html
-<button class="btn btn--cta">Start curriculum</button>
-<span class="badge badge--success">Passed</span>
-```
-
-Full walkthrough: [Handbook → CDN](https://design.freecodecamp.org/handbook#cdn).
-
 ### React - copy the source
 
 1. Install the theme once: copy `tokens.css` + `base.css` from [/registry/theme.md](https://design.freecodecamp.org/registry/theme.md) and import them globally (fonts: see the [starter guide](https://design.freecodecamp.org/registry/starter.md)).
 2. Copy a component from its page - e.g. [/components/button.md](https://design.freecodecamp.org/components/button.md) - into `src/ui/<slug>/`, and import its CSS once.
 3. It is your code now: tailor it freely, recolour by editing token values.
 
-For agents: [/llms.txt](https://design.freecodecamp.org/llms.txt) (index) · [/registry/index.json](https://design.freecodecamp.org/registry/index.json) (machine-readable manifest) · [/registry/starter.md](https://design.freecodecamp.org/registry/starter.md) (bootstrap + AGENTS.md snippet). See [docs/adr/0009-copy-source-registry-distribution.md](./docs/adr/0009-copy-source-registry-distribution.md) for the rationale.
+For agents: [/llms.txt](https://design.freecodecamp.org/llms.txt) (index) · [/registry/index.json](https://design.freecodecamp.org/registry/index.json) (machine-readable manifest) · [/registry/starter.md](https://design.freecodecamp.org/registry/starter.md) (bootstrap + AGENTS.md snippet).
 
 ```tsx
 import './ui/theme/tokens.css';
@@ -87,9 +65,8 @@ For the full component-by-component reference and how UIKit compares to Catalyst
 
 ## Deployment
 
-- **Docs site** → Cloudflare Pages with Git integration (`design.freecodecamp.org`, project `fcc-design`). Pushes to `main` deploy production; every PR (including forks) gets a preview at `https://<branch>.fcc-design.pages.dev`. Build output: `apps/docs/dist/`. See [docs/adr/0008-cloudflare-pages-git-integration.md](./docs/adr/0008-cloudflare-pages-git-integration.md) and [docs/runbooks/deploy-docs.md](./docs/runbooks/deploy-docs.md).
-- **CDN bundle** → ships with the same docs deploy, at `design.freecodecamp.org/cdn/`. Rolling/unversioned - no separate release step. See [docs/adr/0010-cdn-bundle-ships-with-docs-deploy.md](./docs/adr/0010-cdn-bundle-ships-with-docs-deploy.md).
-- **Registry** → the docs site is the registry: component markdown pages, raw source endpoints and `registry/index.json` are generated at docs build time and ship with every docs deploy.
+- **Docs site** → Cloudflare Pages with Git integration (`design.freecodecamp.org`, project `fcc-design`). Pushes to `main` deploy production. Build output: `apps/docs/dist/`. See [docs/runbooks/deploy-docs.md](./docs/runbooks/deploy-docs.md).
+- **Registry** → the docs site is the registry: component markdown pages and raw source endpoints are generated at docs build time and ship with every docs deploy.
 
 ## Reporting bugs
 

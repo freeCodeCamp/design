@@ -58,7 +58,7 @@ Configs:
 - `.oxfmtrc.json` - oxfmt config (single quotes, semi, no trailing commas, 2-space tab).
 - `prettier.config.js` + `prettier-plugin-astro` - Prettier fallback for `.astro`/`.md`/`.mdx`/`.yaml`.
 
-Why two formatters: oxfmt 0.47 does not yet handle `.astro` or `.md`. Track upstream support; remove Prettier when both land. Decision recorded in [`docs/adr/0002-oxc-suite-adoption.md`](./docs/adr/0002-oxc-suite-adoption.md).
+Why two formatters: oxfmt 0.47 does not yet handle `.astro` or `.md`. Track upstream support; remove Prettier when both land.
 
 ## Tests
 
@@ -74,22 +74,15 @@ pnpm test:visual:update  # refresh goldens after intentional UI change
 - `CI` runs on pushes to `main` and pull requests targeting `main`: `pnpm format:check`, `pnpm test`, `pnpm build`.
 - There is no separate release workflow. The CDN bundle (rolling,
   unversioned) and the copy-source registry both ship with every docs
-  build - see [ADR-0010](./docs/adr/0010-cdn-bundle-ships-with-docs-deploy.md).
-- There is no npm publishing - UIKit is a copy-source registry (see
-  [ADR-0009](./docs/adr/0009-copy-source-registry-distribution.md));
+  build.
+- There is no npm publishing - UIKit is a copy-source registry;
   registry pages ship with every docs deploy.
 - Docs site (and CDN bundle) deploy to Cloudflare Pages (project
   `fcc-design`, `design.freecodecamp.org`) via the Cloudflare GitHub
-  App + Git integration. Pushes to `main` deploy production; every PR
-  (including forks) gets a preview at
-  `https://<branch>.fcc-design.pages.dev`. No repo-side deploy
-  workflow and no `CLOUDFLARE_*`/`CDN_PUSH_TOKEN` secrets are
-  required. See the operator runbook in
-  [`docs/runbooks/deploy-docs.md`](./docs/runbooks/deploy-docs.md)
-  and the decisions in
-  [ADR-0008](./docs/adr/0008-cloudflare-pages-git-integration.md)
-  (supersedes ADR-0007) and
-  [ADR-0010](./docs/adr/0010-cdn-bundle-ships-with-docs-deploy.md).
+  App + Git integration. Pushes to `main` deploy production. No
+  repo-side deploy workflow and no `CLOUDFLARE_*`/`CDN_PUSH_TOKEN`
+  secrets are required. See the operator runbook in
+  [`docs/runbooks/deploy-docs.md`](./docs/runbooks/deploy-docs.md).
 
 ## More docs
 

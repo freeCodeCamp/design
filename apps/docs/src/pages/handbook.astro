@@ -367,14 +367,9 @@ pnpm format:check
 pnpm --filter @freecodecamp/uikit-docs test:visual`}</code></pre>
               </li>
               <li>
-                Add a Changeset for user-visible changes -
-                <code>pnpm changeset</code>. Pick packages, bump type, and write
-                a one-line summary.
-              </li>
-              <li>
                 Open a PR against <code>main</code>. CodeRabbit reviews; CI is
-                the source of truth. Releases cut from merged PRs - individual
-                PRs don't publish.
+                the source of truth. Merges to <code>main</code> deploy straight to
+                <code>design.freecodecamp.org</code> - no separate release step.
               </li>
             </ol>
           </section>
