@@ -41,7 +41,7 @@ test('exports map ships each layer as TypeScript source', () => {
   const exports = pkg.exports;
   assert.ok(exports, 'exports map must be defined');
   for (const sub of LAYER_SUBPATHS) {
-    const entry = exports[sub];
+    const entry: unknown = exports[sub];
     assert.ok(
       typeof entry === 'string' && /^\.\/src\/.*index\.ts$/.test(entry),
       `exports["${sub}"] must point at a src index.ts (got ${String(entry)})`

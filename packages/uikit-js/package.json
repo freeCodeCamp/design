@@ -39,16 +39,16 @@
     "node": ">=22"
   },
   "dependencies": {
-    "@zag-js/combobox": "^1.40.0",
-    "@zag-js/dialog": "^1.40.0",
-    "@zag-js/listbox": "^1.40.0",
-    "@zag-js/pagination": "^1.40.0",
-    "@zag-js/tabs": "^1.40.0"
+    "@zag-js/combobox": "^1.43.0",
+    "@zag-js/dialog": "^1.43.0",
+    "@zag-js/listbox": "^1.43.0",
+    "@zag-js/pagination": "^1.43.0",
+    "@zag-js/tabs": "^1.43.0"
   },
   "devDependencies": {
-    "jsdom": "29.1.0",
+    "jsdom": "30.0.1",
     "tsup": "^8.5.1",
-    "vitest": "4.1.5"
+    "vitest": "4.1.10"
   },
   "private": true
 }

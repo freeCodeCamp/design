@@ -37,12 +37,5 @@ pnpm-debug.log*
 # CocoIndex Code (ccc)
 /.cocoindex_code/
 
-# Playwright (goldens committed; results + reports are local-only)
-apps/docs/test-results/
-apps/docs/playwright-report/
-apps/docs/blob-report/
-apps/docs/playwright/.cache/
-apps/docs/.playwright-cli/
-
 # Vitest
 **/coverage/

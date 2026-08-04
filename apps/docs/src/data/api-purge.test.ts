@@ -84,5 +84,5 @@ test('Showcase.astro forwarder removed, PlaygroundCard imported directly', () =>
 
 // Sanity guard against unintended side-effects from `repoRoot` being unused.
 test('repo root resolves to the monorepo top', () => {
-  assert.match(repoRoot, /UIkit$/);
+  assert.match(repoRoot, /design$/);
 });

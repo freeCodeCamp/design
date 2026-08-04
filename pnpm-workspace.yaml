@@ -6,3 +6,6 @@ autoInstallPeers: true
 preferFrozenLockfile: true
 strictPeerDependencies: false
 engineStrict: true
+allowBuilds:
+  esbuild: true
+  sharp: true

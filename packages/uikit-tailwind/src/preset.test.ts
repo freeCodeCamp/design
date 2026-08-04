@@ -38,7 +38,7 @@ test('every --foreground-* token maps to a colors.fg.* key', () => {
   for (const prop of foregroundProps) {
     // --foreground-primary → fg.primary
     const key = prop.replace('--foreground-', '');
-    const mapped = fg.fg[key];
+    const mapped: string | undefined = fg.fg[key];
     assert.ok(
       mapped,
       `Expected preset colors.fg.${key} for ${prop}, got: ${JSON.stringify(fg.fg)}`

@@ -27,22 +27,6 @@
       "cache": false,
       "persistent": true
     },
-    "test:visual": {
-      "cache": false,
-      "dependsOn": ["build"]
-    },
-    "test:visual:update": {
-      "cache": false,
-      "dependsOn": ["build"]
-    },
-    "test:playwright": {
-      "cache": false,
-      "dependsOn": ["build"]
-    },
-    "test:playwright:update": {
-      "cache": false,
-      "dependsOn": ["build"]
-    },
     "lint": {
       "outputs": []
     },

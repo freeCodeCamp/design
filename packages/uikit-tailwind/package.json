@@ -23,9 +23,9 @@
   "homepage": "https://design.freecodecamp.org",
   "description": "Tailwind preset + plugin mirroring freeCodeCamp UIKit tokens",
   "devDependencies": {
-    "@types/node": "^22.19.17",
-    "tailwindcss": "^4.2.4",
-    "tsx": "^4.21.0",
+    "@types/node": "^26.1.2",
+    "tailwindcss": "^4.3.3",
+    "tsx": "^4.23.5",
     "typescript": "^6.0.3"
   },
   "peerDependencies": {

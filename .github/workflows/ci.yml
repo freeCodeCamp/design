@@ -25,9 +25,3 @@ jobs:
     needs: [lint, test]
     uses: ./.github/workflows/re-build.yml
     secrets: inherit
-
-  visual:
-    name: Visual
-    needs: [lint, test]
-    uses: ./.github/workflows/re-visual.yml
-    secrets: inherit

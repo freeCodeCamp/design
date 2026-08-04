@@ -53,7 +53,7 @@ export default defineConfig({
           replacement: pkgUrl('uikit/src/index.ts')
         },
         {
-          find: /^@freecodecamp\/uikit\/(.*)$/,
+          find: /^@freecodecamp\/uikit\/(?!props\.json$)(.*)$/,
           replacement: pkgUrl('uikit/src/$1')
         },
         {
