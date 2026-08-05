@@ -7,6 +7,16 @@
   // preview URLs otherwise track `workers_dev`, so they would silently switch
   // off the day the custom domain lands and `workers_dev` is turned off.
   "preview_urls": true,
+  // https://developers.cloudflare.com/workers/wrangler/configuration/#source-of-truth
+  // Wrangler overrides dashboard routes on every deploy with whatever `routes`
+  // holds. Declaring the custom domain here is what stops the next deploy from
+  // detaching design.freecodecamp.org.
+  "routes": [
+    {
+      "pattern": "design.freecodecamp.org",
+      "custom_domain": true
+    }
+  ],
   // Assets-only Worker: no `main` entrypoint. The docs site is a pure Astro
   // SSG build, so every request is served straight from the asset store and
   // no Worker script is invoked. `_headers` and `_redirects` in dist/ are
