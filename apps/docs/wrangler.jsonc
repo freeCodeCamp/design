@@ -1,0 +1,15 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "design",
+  "compatibility_date": "2026-08-05",
+  // Assets-only Worker: no `main` entrypoint. The docs site is a pure Astro
+  // SSG build, so every request is served straight from the asset store and
+  // no Worker script is invoked. `_headers` and `_redirects` in dist/ are
+  // consumed by the asset server, not served as assets.
+  "assets": {
+    "directory": "./dist",
+    // dist/ has no 404.html - return a plain 404 for unknown paths rather
+    // than rewriting them to index.html (this is a docs site, not an SPA).
+    "not_found_handling": "none"
+  }
+}

@@ -10,6 +10,8 @@
     "prebuild": "node scripts/copy-sprite.mjs && node scripts/build-asset-kit.mjs && node scripts/ensure-uikit-built.mjs && node scripts/build-cdn-bundle.mjs",
     "build": "astro build && node scripts/verify-dist-pages-artefacts.mjs",
     "preview": "astro preview",
+    "preview:cf": "wrangler dev",
+    "deploy:cf": "wrangler deploy",
     "lint": "astro check && oxlint",
     "typecheck": "astro check"
   },
@@ -47,6 +49,7 @@
     "@types/react-dom": "^19.2.4",
     "lightningcss": "^1.33.0",
     "rehype-autolink-headings": "^7.1.0",
-    "rehype-slug": "^6.0.0"
+    "rehype-slug": "^6.0.0",
+    "wrangler": "^4.118.0"
   }
 }

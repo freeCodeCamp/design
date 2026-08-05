@@ -15,6 +15,7 @@
     "**/.astro",
     "**/__coverage__",
     "**/.turbo",
+    "**/.wrangler",
     ".scratchpad/",
     ".claude/",
     "pnpm-lock.yaml",

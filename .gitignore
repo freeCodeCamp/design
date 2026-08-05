@@ -32,6 +32,9 @@ pnpm-debug.log*
 # Turborepo
 .turbo/
 
+# Wrangler local state + build temp (created by `wrangler dev` / `deploy`)
+.wrangler/
+
 # Local scratch work
 .scratchpad/
 # CocoIndex Code (ccc)
