@@ -6,10 +6,9 @@
 //   4. Wordmark usage - "freeCodeCamp" vs "fCC" vs puck-only
 //   5. Asset kit      - single zip download
 //
-// The asset-kit zip is generated at predev + prebuild by
-// `apps/docs/scripts/build-asset-kit.mjs`; `public/brand/asset-kit.zip`
-// is gitignored because the zip CLI writes a non-deterministic payload
-// (timestamps + compression flags drift per run).
+// The asset-kit zip is a tracked source file next to the marks it bundles,
+// in `packages/uikit-css/src/brand/`, which `public/brand` symlinks to.
+// Rebuild it by hand when a mark changes.
 import DoDont from '../site/DoDont.astro';
 
 const marks: readonly {
