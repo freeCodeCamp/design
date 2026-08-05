@@ -7,6 +7,12 @@
   // preview URLs otherwise track `workers_dev`, so they would silently switch
   // off the day the custom domain lands and `workers_dev` is turned off.
   "preview_urls": true,
+  // Off so the site exists on exactly one production origin. Otherwise
+  // design.<subdomain>.workers.dev serves a byte-identical duplicate, and the
+  // only thing keeping it out of search results is an X-Robots-Tag rule in
+  // _headers. Branch previews are unaffected - `preview_urls` above is set
+  // explicitly so it no longer tracks this flag.
+  "workers_dev": false,
   // https://developers.cloudflare.com/workers/wrangler/configuration/#source-of-truth
   // Wrangler overrides dashboard routes on every deploy with whatever `routes`
   // holds. Declaring the custom domain here is what stops the next deploy from
