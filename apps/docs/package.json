@@ -12,6 +12,7 @@
     "preview": "astro preview",
     "preview:cf": "wrangler dev",
     "deploy:cf": "wrangler deploy",
+    "upload:cf": "wrangler versions upload",
     "lint": "astro check && oxlint",
     "typecheck": "astro check"
   },

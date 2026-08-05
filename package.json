@@ -13,6 +13,7 @@
     "preview": "turbo run preview --filter=@freecodecamp/uikit-docs",
     "preview:cf": "pnpm --filter @freecodecamp/uikit-docs preview:cf",
     "deploy:cf": "pnpm build:docs && pnpm --filter @freecodecamp/uikit-docs deploy:cf",
+    "upload:cf": "pnpm build:docs && pnpm --filter @freecodecamp/uikit-docs upload:cf",
     "test": "turbo run test",
     "test:unit": "turbo run test",
     "test:coverage": "turbo run test:coverage",
