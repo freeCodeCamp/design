@@ -31,7 +31,18 @@
 /uikit/*
   Cache-Control: public, max-age=86400
 
-# Keep `*.pages.dev` preview URLs out of search engines.
+# Keep non-canonical origins out of search engines. Only
+# `design.freecodecamp.org` should be indexable - every workers.dev host
+# serves a byte-identical copy of the site, including `robots.txt` with its
+# `Allow: /` and its absolute canonical `Sitemap:` line.
+#
+# `:version.:project.workers.dev` covers both the production worker
+# (`design.<subdomain>.workers.dev`) and every branch preview version
+# (`<version>-design.<subdomain>.workers.dev`). A single `*.workers.dev`
+# wildcard is rejected - one wildcard per rule.
+https://:version.:project.workers.dev/*
+  X-Robots-Tag: noindex
+
 https://:project.pages.dev/*
   X-Robots-Tag: noindex
 
