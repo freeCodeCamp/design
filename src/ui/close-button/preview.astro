@@ -1,0 +1,8 @@
+---
+import PlaygroundCard from '../../components/site/PlaygroundCard.astro';
+import { DismissibleNotice as Example } from './example';
+---
+
+<PlaygroundCard id='close-button'>
+  <Example slot='preview' client:visible />
+</PlaygroundCard>

@@ -1,0 +1,8 @@
+---
+import PlaygroundCard from '../../components/site/PlaygroundCard.astro';
+import { Certifications as Example } from './example';
+---
+
+<PlaygroundCard id='data-table' previewStacked>
+  <Example slot='preview' client:visible />
+</PlaygroundCard>

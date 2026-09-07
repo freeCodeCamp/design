@@ -1,0 +1,38 @@
+---
+const current = Astro.url.pathname.replace(/\/$/, '') || '/';
+const links = [
+  ['/', 'Overview'],
+  ['/handbook', 'Style guide'],
+  ['/playground', 'Playground']
+];
+---
+
+<header class='site-header'>
+  <div class='wrap header-inner'>
+    <a class='brand-link' href='/' aria-label='freeCodeCamp Design home'>
+      <img
+        src='/brand/fcc-primary.svg'
+        width='210'
+        height='24'
+        alt='freeCodeCamp'
+      />
+      <span>Design</span>
+    </a>
+    <nav aria-label='Main navigation'>
+      {
+        links.map(([href, label]) => (
+          <a href={href} aria-current={current === href ? 'page' : undefined}>
+            {label}
+          </a>
+        ))
+      }
+    </nav>
+    <button
+      class='theme-toggle'
+      type='button'
+      data-theme-toggle
+      aria-label='Light theme'
+      aria-pressed='false'>Light theme</button
+    >
+  </div>
+</header>

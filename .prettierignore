@@ -5,7 +5,6 @@
 **/dist
 **/.astro
 **/__coverage__
-**/.turbo
 **/.wrangler
 
 # Scratch work (contains third-party sources with their own configs)

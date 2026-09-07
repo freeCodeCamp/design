@@ -10,18 +10,33 @@ permissions:
   contents: read
 
 jobs:
-  lint:
-    name: Lint
-    uses: ./.github/workflows/re-lint.yml
-    secrets: inherit
-
-  test:
-    name: Test
-    uses: ./.github/workflows/re-test.yml
-    secrets: inherit
-
-  build:
-    name: Build
-    needs: [lint, test]
-    uses: ./.github/workflows/re-build.yml
-    secrets: inherit
+  check:
+    name: Check website
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Check workflow syntax
+        uses: docker://rhysd/actionlint:1.7.12
+        with:
+          args: -color
+      - uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86
+        with:
+          run_install: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: '24'
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm format:check
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm test:coverage
+      - run: pnpm build
+      - name: Upload coverage
+        if: ${{ always() }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: coverage-report
+          path: coverage/
+          retention-days: 14
+          if-no-files-found: ignore

@@ -1,0 +1,8 @@
+---
+import PlaygroundCard from '../../components/site/PlaygroundCard.astro';
+import { Example } from './example';
+---
+
+<PlaygroundCard id='combobox' previewStacked>
+  <Example slot='preview' client:load />
+</PlaygroundCard>

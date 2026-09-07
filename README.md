@@ -1,92 +1,57 @@
-[![freeCodeCamp Social Banner](https://cdn.freecodecamp.org/platform/universal/fcc_banner_new.png)](https://www.freecodecamp.org/)
+# freeCodeCamp Design
 
-# freeCodeCamp UIKit
+**Command-line Chic** is the freeCodeCamp design system. The website has an overview, a style guide, and a component playground at [design.freecodecamp.org](https://design.freecodecamp.org).
 
-[![Discord](https://img.shields.io/discord/692816967895220344?logo=discord&label=Discord&color=5865F2)](https://discord.gg/PRyKn3Vbay)
-[![License: BSD-3-Clause](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](./LICENSE.md)
-[![Node](https://img.shields.io/badge/node-%3E%3D22-brightgreen)](./.nvmrc)
-[![pnpm](https://img.shields.io/badge/pnpm-10-orange)](./package.json)
+## Run locally
 
-Design system, React component library, and vanilla-JS adapter that power the freeCodeCamp.org platform. Built CSS-first with design tokens and accessibility-tested against the WAI-ARIA Authoring Practices.
+Use Node.js 24 or later and pnpm. From a clone of this repository:
 
-UIKit is distributed as a **copy-source registry** (shadcn-style): components are copied from [design.freecodecamp.org](https://design.freecodecamp.org) into your project's source and tailored there - nothing installs from npm, nothing is packaged. It is built to be equally usable by humans and LLM coding agents: point an agent at [design.freecodecamp.org/llms.txt](https://design.freecodecamp.org/llms.txt) and it can discover, copy, and adapt any component.
-
-## Packages
-
-All workspaces are private - they are the source of truth the registry serves, not npm packages.
-
-| Workspace                                              | Description                                                           |
-| ------------------------------------------------------ | --------------------------------------------------------------------- |
-| [`packages/uikit`](./packages/uikit)                   | React component library - 47 components across 8 tiers                |
-| [`packages/uikit-css`](./packages/uikit-css)           | Design tokens, base helpers, fonts, brand assets                      |
-| [`packages/uikit-js`](./packages/uikit-js)             | Vanilla JS runtime - wires `data-uikit-*` attrs to Zag state machines |
-| [`packages/uikit-icons`](./packages/uikit-icons)       | Curated Lucide icon subset, React + sprite                            |
-| [`packages/uikit-tailwind`](./packages/uikit-tailwind) | Tailwind preset + plugin mirroring UIKit tokens                       |
-
-## Quick start
-
-### React - copy the source
-
-1. Install the theme once: copy `tokens.css` + `base.css` from [/registry/theme.md](https://design.freecodecamp.org/registry/theme.md) and import them globally (fonts: see the [starter guide](https://design.freecodecamp.org/registry/starter.md)).
-2. Copy a component from its page - e.g. [/components/button.md](https://design.freecodecamp.org/components/button.md) - into `src/ui/<slug>/`, and import its CSS once.
-3. It is your code now: tailor it freely, recolour by editing token values.
-
-For agents: [/llms.txt](https://design.freecodecamp.org/llms.txt) (index) · [/registry/index.json](https://design.freecodecamp.org/registry/index.json) (machine-readable manifest) · [/registry/starter.md](https://design.freecodecamp.org/registry/starter.md) (bootstrap + AGENTS.md snippet).
-
-```tsx
-import './ui/theme/tokens.css';
-import { Button } from './ui/button/Button';
-import { Badge } from './ui/badge/Badge';
-
-export default function Example() {
-  return (
-    <>
-      <Button variant='cta'>Start curriculum</Button>
-      <Badge tone='success'>Passed</Badge>
-    </>
-  );
-}
-```
-
-## Documentation
-
-The docs site (`apps/docs`) is the canonical reference: live component showcases, real React previews, the design handbook, and brand guide.
-
-```bash
+```sh
 pnpm install
-pnpm dev:docs
+pnpm dev
 ```
 
-Then open <http://localhost:4321>.
+Open the URL printed by Portless (normally <https://design.localhost>). No environment file, account, or package build is required. Portless is installed with the project. On first use, it can ask for permission to set up local HTTPS.
 
-The site ships at <https://design.freecodecamp.org> via Cloudflare Pages.
+## Copy a component
 
-For the full component-by-component reference and how UIKit compares to Catalyst / Ark UI / Headless UI, see [docs/components-matrix.md](./docs/components-matrix.md).
+Open the playground and expand **Code & usage** to copy React source and CSS. Use **Copy as Markdown** for the complete reference, including shared source and setup instructions.
 
-## Deployment
+There is no freeCodeCamp package to install. Components use React and ordinary CSS. Some interactive components declare a third-party dependency. Copied files belong to the consuming project and do not update automatically.
 
-- **Docs site** → Cloudflare Pages with Git integration (`design.freecodecamp.org`, project `fcc-design`). Pushes to `main` deploy production. Build output: `apps/docs/dist/`. See [docs/runbooks/deploy-docs.md](./docs/runbooks/deploy-docs.md).
-- **Registry** → the docs site is the registry: component markdown pages and raw source endpoints are generated at docs build time and ship with every docs deploy.
+For agents, start at [llms.txt](https://design.freecodecamp.org/llms.txt).
 
-## Reporting bugs
+## Check a change
 
-Open an issue at <https://github.com/freeCodeCamp/UIkit/issues>. Include reproduction steps, expected behaviour, and observed behaviour. For visual regressions, attach the Playwright diff PNG from `apps/docs/test-results/`.
+```sh
+pnpm test
+pnpm typecheck
+pnpm lint
+pnpm format:check
+pnpm build
+```
 
-## Reporting security issues
+`pnpm build` creates the static site in `dist` and verifies the component registry. Use `pnpm preview` to inspect that build.
 
-Do **not** open a public issue - follow the disclosure process in [SECURITY.md](./SECURITY.md).
+## Source layout
 
-## Contributing
+- `src/pages`: overview, style guide, playground, and text endpoints.
+- `src/content/guide/style-guide.md`: the style guide and its Markdown reference.
+- `src/data/components.json`: component names, descriptions, and categories.
+- `src/data/consumer-dependencies.json`: dependency ranges for copied source.
+- `src/ui/<component>`: source, CSS, tests, executable example, and Astro preview.
+- `src/ui/theme`: shared theme and base styles.
+- `src/ui/icons`: React icons and SVG files.
+- `public/brand` and `public/fonts`: static assets.
 
-The freeCodeCamp.org community is possible thanks to thousands of kind volunteers. Read the contributor guide at <https://contribute.freecodecamp.org/>, then [CONTRIBUTING.md](./CONTRIBUTING.md) for the UIKit-specific workflow.
+This is one private application. It has no npm release or workspace packages.
 
-All contributors are expected to follow the [Code of Conduct](./CODE_OF_CONDUCT.md).
+To change a component, edit its folder and catalog entry. Import component source directly in examples; the registry converts these imports to copy destinations. Check the preview and the copied result in both themes, including keyboard use. Tests also compile the copied examples. Compilation does not verify appearance or accessibility.
 
-## License
+Use `pnpm format` to format changes and `pnpm test:coverage` to check coverage. The pre-commit hook runs lint-staged. Use Conventional Commits.
 
-Copyright © 2026 freeCodeCamp.org
+Use `pnpm preview:cf` after a build to check Cloudflare asset serving locally. The static hosting configuration is `wrangler.jsonc`. The operator handles uploads and deployment. Local development needs no hosting account.
 
-The content of this repository is bound by the following licenses:
+Read the [Code of Conduct](./CODE_OF_CONDUCT.md). Report security issues through [SECURITY.md](./SECURITY.md).
 
-- The computer software is licensed under the [BSD-3-Clause](./LICENSE.md) license.
-- The documentation is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+Source code is licensed under [BSD-3-Clause](./LICENSE.md). Documentation is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).

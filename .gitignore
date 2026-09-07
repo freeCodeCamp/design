@@ -1,12 +1,7 @@
 # build output
 dist/
-packages/uikit-css/src/_cdn-entry.css
 # generated types
 .astro/
-# docs: sprite copied from uikit-icons/dist on predev/prebuild
-apps/docs/public/uikit/
-# docs: zero-build CDN bundle built on predev/prebuild (see scripts/build-cdn-bundle.mjs)
-apps/docs/public/cdn/
 
 # dependencies
 node_modules/
@@ -27,8 +22,6 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-# Turborepo
-.turbo/
 
 # Wrangler local state + build temp (created by `wrangler dev` / `deploy`)
 .wrangler/

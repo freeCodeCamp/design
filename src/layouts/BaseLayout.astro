@@ -1,0 +1,89 @@
+---
+import Header from '../components/site/AppHeader.astro';
+import { CANONICAL_SITE } from '../lib/site';
+import '../ui/theme/tokens.css';
+import '../ui/theme/components.css';
+import '../styles/site.css';
+
+interface Props {
+  title: string;
+  description: string;
+  markdown?: string;
+}
+const { title, description, markdown } = Astro.props;
+const canonical = new URL(Astro.url.pathname, CANONICAL_SITE);
+---
+
+<!doctype html>
+<html lang='en' class='dark-palette'>
+  <head>
+    <meta charset='utf-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <meta name='color-scheme' content='dark light' />
+    <title>{title} · freeCodeCamp Design</title>
+    <meta name='description' content={description} />
+    <link rel='canonical' href={canonical} />
+    <meta property='og:title' content={`${title} · freeCodeCamp Design`} />
+    <meta property='og:description' content={description} />
+    <meta property='og:type' content='website' />
+    <meta property='og:url' content={canonical} />
+    <link rel='icon' href='/favicon.svg' type='image/svg+xml' />
+    <link rel='describedby' href='/llms.txt' type='text/markdown' />
+    {markdown && <link rel='alternate' href={markdown} type='text/markdown' />}
+    <link
+      rel='preload'
+      as='font'
+      type='font/woff'
+      href='/fonts/Lato-Regular.woff'
+      crossorigin
+    />
+    <script is:inline>
+      try {
+        if (localStorage.getItem('fcc-palette') === 'light')
+          document.documentElement.className = 'light-palette';
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <a class='skip-link' href='#main'>Skip to content</a>
+    <Header />
+    <slot />
+    <footer class='site-footer wrap'>
+      <a href='https://www.freecodecamp.org/'
+        >Learn to code. Build something that matters.</a
+      >
+      <div>
+        <a href='/llms.txt'>For agents</a><a
+          href='https://github.com/freeCodeCamp/UIkit'>GitHub ↗</a
+        ><a href='/license.txt'>License</a>
+      </div>
+      <p>Made by freeCodeCamp. Open to everyone.</p>
+    </footer>
+    <script>
+      import { wireCopy } from '../scripts/copy';
+      wireCopy(document);
+      const toggle = document.querySelector<HTMLButtonElement>(
+        '[data-theme-toggle]'
+      );
+      const syncTheme = () => {
+        const light =
+          document.documentElement.classList.contains('light-palette');
+        toggle?.setAttribute('aria-pressed', String(light));
+        toggle?.setAttribute('aria-label', 'Light theme');
+        if (toggle) toggle.textContent = light ? 'Dark theme' : 'Light theme';
+      };
+      syncTheme();
+      toggle?.addEventListener('click', () => {
+        const light =
+          !document.documentElement.classList.contains('light-palette');
+        document.documentElement.className = light
+          ? 'light-palette'
+          : 'dark-palette';
+        try {
+          localStorage.setItem('fcc-palette', light ? 'light' : 'dark');
+        } catch {}
+        syncTheme();
+      });
+    </script>
+  </body>
+</html>

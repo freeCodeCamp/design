@@ -1,0 +1,10 @@
+.img--responsive {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.img-figure {
+  margin: 0;
+  max-width: 100%;
+}
