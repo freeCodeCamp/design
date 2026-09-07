@@ -1,0 +1,376 @@
+[
+  {
+    "id": "alert",
+    "title": "Alert",
+    "category": "data-display",
+    "summary": "Full-width status surface for page-level state - saved, failed, queued.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/alert/",
+    "order": 10
+  },
+  {
+    "id": "auth-layout",
+    "title": "Auth layout",
+    "category": "layout",
+    "summary": "Centered card on a tile-pattern backdrop - sign-in, sign-up, password reset.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/",
+    "order": 52
+  },
+  {
+    "id": "avatar",
+    "title": "Avatar",
+    "category": "primitive",
+    "summary": "User mark - image, initials fallback, optional online/away status dot.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/",
+    "order": 13
+  },
+  {
+    "id": "badge",
+    "title": "Badge",
+    "category": "primitive",
+    "summary": "Inline status chip - sparingly. Max 2 per row.",
+    "order": 2
+  },
+  {
+    "id": "breadcrumb",
+    "title": "Breadcrumb",
+    "category": "navigation",
+    "summary": "Hierarchical trail with the current page marked via aria-current.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/",
+    "order": 32
+  },
+  {
+    "id": "button",
+    "title": "Button",
+    "category": "primitive",
+    "summary": "The workhorse. 3px square border, inverted fill on primary, no shadow.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/button/",
+    "order": 1
+  },
+  {
+    "id": "callout",
+    "title": "Callout",
+    "category": "data-display",
+    "summary": "Inline sidebar for curriculum notes, tips, and cautions.",
+    "order": 11
+  },
+  {
+    "id": "card",
+    "title": "Card",
+    "category": "data-display",
+    "summary": "Flat bordered container. Grid-friendly. No shadow, no hover lift.",
+    "order": 1
+  },
+  {
+    "id": "checkbox",
+    "title": "Checkbox",
+    "category": "form",
+    "summary": "Flat, square, accent-filled checkmark.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/",
+    "order": 2
+  },
+  {
+    "id": "close-button",
+    "title": "Close button",
+    "category": "primitive",
+    "summary": "Inline dismiss affordance - modals, alerts, drawers.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/button/",
+    "order": 3
+  },
+  {
+    "id": "combobox",
+    "title": "Combobox",
+    "category": "navigation",
+    "summary": "Typeahead select. Filters as you type.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/combobox/",
+    "order": 32
+  },
+  {
+    "id": "command-palette",
+    "title": "Command palette",
+    "category": "overlay",
+    "summary": "⌘K spotlight - global commands, grouped, keyboard-shortcut hinted.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/combobox/",
+    "order": 63
+  },
+  {
+    "id": "data-table",
+    "title": "Data table",
+    "category": "data-display",
+    "summary": "Sortable, selectable, paginated table - header sort buttons, optional row select.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/grid/",
+    "order": 65
+  },
+  {
+    "id": "description-list",
+    "title": "Description list",
+    "category": "data-display",
+    "summary": "Term + detail metadata pair - stacked or inline layout.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/",
+    "order": 16
+  },
+  {
+    "id": "divider",
+    "title": "Divider",
+    "category": "primitive",
+    "summary": "Hairline rule. Solid or dashed; horizontal or vertical.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/",
+    "order": 12
+  },
+  {
+    "id": "dropdown",
+    "title": "Dropdown",
+    "category": "overlay",
+    "summary": "Menu anchored to a trigger - overflow actions, filters, sort.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/",
+    "order": 10
+  },
+  {
+    "id": "empty-state",
+    "title": "Empty state",
+    "category": "data-display",
+    "summary": "No-data placeholder with title, description, and a primary action.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/",
+    "order": 61
+  },
+  {
+    "id": "fieldset",
+    "title": "Fieldset",
+    "category": "form",
+    "summary": "Groups related controls under a legend - required for radio groups.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/",
+    "order": 15
+  },
+  {
+    "id": "form-control",
+    "title": "Form control",
+    "category": "form",
+    "summary": "Low-level text control - no label wrapper, for custom layouts.",
+    "order": 8
+  },
+  {
+    "id": "form-group",
+    "title": "Form group",
+    "category": "form",
+    "summary": "Groups a label, control, and help text with consistent spacing.",
+    "order": 7
+  },
+  {
+    "id": "form-stepper",
+    "title": "Form stepper",
+    "category": "form",
+    "summary": "Multi-step form progress - keyboard navigable.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/",
+    "order": 64
+  },
+  {
+    "id": "heading",
+    "title": "Heading",
+    "category": "primitive",
+    "summary": "Headline primitive - independent of HTML level. Five visual sizes; tag chosen for outline.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/",
+    "order": 11
+  },
+  {
+    "id": "help-block",
+    "title": "Help block",
+    "category": "form",
+    "summary": "Field-level guidance - neutral, success, or error tone.",
+    "order": 9
+  },
+  {
+    "id": "hotspots",
+    "title": "Hotspots",
+    "category": "game",
+    "summary": "Clickable regions overlaid on a background image or diagram. Quiz mode with target, feedback, and hints.",
+    "order": 2
+  },
+  {
+    "id": "image",
+    "title": "Image",
+    "category": "primitive",
+    "summary": "Responsive image wrapper with built-in aspect caption and alt enforcement.",
+    "a11yPattern": "https://www.w3.org/WAI/tutorials/images/",
+    "order": 6
+  },
+  {
+    "id": "input",
+    "title": "Input",
+    "category": "form",
+    "summary": "Text input with a built-in label, helper text, and error slot.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/textbox/",
+    "order": 1
+  },
+  {
+    "id": "link",
+    "title": "Link",
+    "category": "primitive",
+    "summary": "Inline links carry the highlight accent and thicken on hover.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/link/",
+    "order": 4
+  },
+  {
+    "id": "listbox",
+    "title": "Listbox",
+    "category": "navigation",
+    "summary": "Persistent selection list - keyboard navigable, single or multi-select.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/listbox/",
+    "order": 31
+  },
+  {
+    "id": "modal",
+    "title": "Modal",
+    "category": "overlay",
+    "summary": "Blocking dialog - confirmations and short-form destructive choices.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/",
+    "order": 1
+  },
+  {
+    "id": "navbar",
+    "title": "Navbar",
+    "category": "navigation",
+    "summary": "Top app bar - three-zone (start / center / end), theme-flat, no shadow.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/",
+    "order": 40
+  },
+  {
+    "id": "pagination",
+    "title": "Pagination",
+    "category": "navigation",
+    "summary": "Page selector - Ark UI pagination machine, keyboard navigable.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/",
+    "order": 30
+  },
+  {
+    "id": "panel",
+    "title": "Panel",
+    "category": "data-display",
+    "summary": "Borderless surface-two container - sidebars, inspectors, nested regions.",
+    "order": 2
+  },
+  {
+    "id": "radio",
+    "title": "Radio",
+    "category": "form",
+    "summary": "Mutually exclusive choice - group with `name` or `radio-group`.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/radio/",
+    "order": 17
+  },
+  {
+    "id": "select",
+    "title": "Select",
+    "category": "form",
+    "summary": "Native select wrapper - square chevron, matching height with Input.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/combobox/",
+    "order": 18
+  },
+  {
+    "id": "sidebar-layout",
+    "title": "Sidebar layout",
+    "category": "layout",
+    "summary": "Header + left rail + main - the curriculum chrome shape.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/",
+    "order": 50
+  },
+  {
+    "id": "sidebar",
+    "title": "Sidebar",
+    "category": "navigation",
+    "summary": "Left rail - sections + items, optional collapsible groups.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/",
+    "order": 41
+  },
+  {
+    "id": "skeleton",
+    "title": "Skeleton",
+    "category": "data-display",
+    "summary": "Placeholder bars during data fetch - reduced-motion aware shimmer.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/",
+    "order": 60
+  },
+  {
+    "id": "spacer",
+    "title": "Spacer",
+    "category": "primitive",
+    "summary": "Explicit whitespace on an 8-step scale.",
+    "order": 5
+  },
+  {
+    "id": "stacked-layout",
+    "title": "Stacked layout",
+    "category": "layout",
+    "summary": "Header + main + footer - the marketing/news chrome shape.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/",
+    "order": 51
+  },
+  {
+    "id": "switch",
+    "title": "Switch",
+    "category": "form",
+    "summary": "For settings that take effect immediately - theme, audio, keybinds.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/switch/",
+    "order": 3
+  },
+  {
+    "id": "table",
+    "title": "Table",
+    "category": "data-display",
+    "summary": "Rule-heavy, square, mono-numeric - for progress and diagnostic data.",
+    "a11yPattern": "https://www.w3.org/TR/wai-aria-practices-1.2/examples/table/table.html",
+    "order": 13
+  },
+  {
+    "id": "tabs",
+    "title": "Tabs",
+    "category": "navigation",
+    "summary": "Inverted-fill selected state, matches the platform editor panel.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/tabs/",
+    "order": 11
+  },
+  {
+    "id": "text",
+    "title": "Text",
+    "category": "primitive",
+    "summary": "Body-text primitive - semantic-tag agnostic, size + weight + tone variants.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/",
+    "order": 10
+  },
+  {
+    "id": "textarea",
+    "title": "Textarea",
+    "category": "form",
+    "summary": "Multi-line text control with mono variant for code snippets.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/",
+    "order": 19
+  },
+  {
+    "id": "tile-matcher",
+    "title": "Tile matcher",
+    "category": "game",
+    "summary": "Data-driven memory / matching game for interactive curricula. Flip to reveal, match pairs, fire callbacks.",
+    "order": 1
+  },
+  {
+    "id": "toast",
+    "title": "Toast",
+    "category": "overlay",
+    "summary": "Transient status surface - Ark UI toaster machine, reduced-motion aware.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/alert/",
+    "order": 62
+  },
+  {
+    "id": "toggle-button",
+    "title": "Toggle button",
+    "category": "form",
+    "summary": "For stateful binary choices - hours pressed, unit selected, dark mode on.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/button/",
+    "order": 2
+  },
+  {
+    "id": "tooltip",
+    "title": "Tooltip",
+    "category": "overlay",
+    "summary": "Contextual hint on hover or focus - keep to 80 chars.",
+    "a11yPattern": "https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/",
+    "order": 2
+  }
+]

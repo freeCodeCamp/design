@@ -1,0 +1,8 @@
+---
+import PlaygroundCard from '../../components/site/PlaygroundCard.astro';
+import { Details as Example } from './example';
+---
+
+<PlaygroundCard id='modal' previewStacked>
+  <Example slot='preview' client:load />
+</PlaygroundCard>

@@ -10,20 +10,15 @@
         "@types/**",
         "oxlint",
         "oxfmt",
-        "@oxc-project/**",
         "prettier",
         "prettier-**",
         "vitest",
         "@vitest/**",
         "@testing-library/**",
         "jsdom",
-        "tsup",
-        "tsx",
-        "turbo",
         "is-ci",
         "husky",
-        "lint-staged",
-        "publint"
+        "lint-staged"
       ],
       "automerge": true,
       "automergeType": "pr",
@@ -35,7 +30,7 @@
       "automerge": false
     },
     {
-      "description": "Hold framework + peer deps even on minor + patch",
+      "description": "Review framework dependency updates",
       "matchPackageNames": [
         "react",
         "react-dom",
@@ -43,16 +38,9 @@
         "@types/react-dom",
         "astro",
         "@astrojs/**",
-        "@ark-ui/**",
-        "@zag-js/**",
-        "lightningcss"
+        "@ark-ui/**"
       ],
       "automerge": false
-    },
-    {
-      "description": "Workspace deps managed via changesets, not Renovate",
-      "matchPackageNames": ["@freecodecamp/**"],
-      "enabled": false
     }
   ]
 }

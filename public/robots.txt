@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://design.freecodecamp.org/sitemap-index.xml

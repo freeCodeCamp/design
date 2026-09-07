@@ -1,0 +1,123 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Badge } from '../ui/badge/Badge';
+import { Card } from '../ui/card/Card';
+---
+
+<BaseLayout
+  title='Command-line Chic'
+  description='The freeCodeCamp design system. Clear interfaces for people who are learning. Explore the style guide and copy components into your project.'
+>
+  <main id='main' class='wrap' tabindex='-1'>
+    <section class='home-hero'>
+      <div class='hero-copy'>
+        <p class='eyebrow'>The freeCodeCamp design system</p>
+        <h1>
+          Command-line<br /><span
+            >Chic<span class='cursor-mark' aria-hidden='true'>_</span></span
+          >
+        </h1>
+        <p class='hero-description'>
+          Built for the moment<br />something clicks.
+        </p>
+        <p class='hero-note'>
+          Clear type. Familiar controls. Room to think.<br />A shared language
+          for everyone building at freeCodeCamp.
+        </p>
+        <div class='actions'>
+          <a class='site-button primary' href='/playground'
+            >Explore components <span aria-hidden='true'>↗</span></a
+          ><a class='text-link' href='/handbook'>Read the style guide →</a>
+        </div>
+      </div>
+      <div
+        class='specimen'
+        aria-label='A composition of freeCodeCamp components'
+      >
+        <div class='specimen-label'>
+          <span>01 / A familiar place to start</span><span aria-hidden='true'
+            >[ fCC ]</span
+          >
+        </div>
+        <Card className='lesson-card'>
+          <div class='lesson-top'>
+            <span class='mono'>Responsive Web Design</span><Badge
+              variant='success'>In progress</Badge
+            >
+          </div>
+          <p class='lesson-number' aria-hidden='true'>Aa<span>→</span></p>
+          <h2>Small steps.<br />Real progress.</h2>
+          <p>Every great interface starts with the basics. Make them count.</p>
+          <div class='lesson-progress'>
+            <span>Foundations</span><span>3 of 4</span>
+          </div>
+          <div
+            class='progress-track'
+            aria-label='Foundations: 3 of 4 complete'
+            role='img'
+          >
+            <span></span>
+          </div>
+          <ul class='lesson-list'>
+            <li>
+              <span aria-hidden='true'>✓</span> Give the content a clear hierarchy
+            </li><li>
+              <span aria-hidden='true'>✓</span> Make the next action obvious
+            </li><li>
+              <span aria-hidden='true'>✓</span> Leave room for the learner
+            </li>
+          </ul>
+          <a class='btn btn--cta lesson-link' href='/playground#button'
+            >Find your building blocks <span aria-hidden='true'>→</span></a
+          >
+        </Card>
+        <div class='specimen-caption'>
+          <span>TYPE / COLOR / COMPONENTS</span><span
+            >Made to work together.</span
+          >
+        </div>
+      </div>
+    </section>
+    <section class='principles-strip' aria-label='Design principles'>
+      <div>
+        <span class='eyebrow'>01 / Purpose</span><h2>Content comes first.</h2><p
+        >
+          Let people focus on what they came to learn.
+        </p>
+      </div>
+      <div>
+        <span class='eyebrow'>02 / Character</span><h2>
+          Distinctly freeCodeCamp.
+        </h2><p>Honest type, square edges, and a little terminal spirit.</p>
+      </div>
+      <div>
+        <span class='eyebrow'>03 / Ownership</span><h2>
+          Take it. Make it yours.
+        </h2><p>
+          Copy the source into your project. No freeCodeCamp package to install.
+        </p>
+      </div>
+    </section>
+    <section class='home-next'>
+      <p class='eyebrow'>A common starting point</p>
+      <div>
+        <h2>One language.<br />Many things to build.</h2><p>
+          The guide explains the decisions. The playground puts them in your
+          hands. Working with an agent? Give it <a href='/llms.txt'>llms.txt</a> or
+          copy a component as Markdown.
+        </p>
+      </div>
+      <div class='destination-links'>
+        <a href='/handbook'
+          ><span>01 / Style guide</span><strong
+            >The thinking behind the details.</strong
+          ><span aria-hidden='true'>↗</span></a
+        ><a href='/playground'
+          ><span>02 / Playground</span><strong
+            >From reference to your project.</strong
+          ><span aria-hidden='true'>↗</span></a
+        >
+      </div>
+    </section>
+  </main>
+</BaseLayout>

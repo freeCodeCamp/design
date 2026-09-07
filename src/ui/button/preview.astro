@@ -1,0 +1,8 @@
+---
+import PlaygroundCard from '../../components/site/PlaygroundCard.astro';
+import { Actions as Example } from './example';
+---
+
+<PlaygroundCard id='button'>
+  <Example slot='preview' client:visible />
+</PlaygroundCard>

@@ -1,0 +1,98 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+const entries = (await getCollection('components')).sort(
+  (a, b) =>
+    (a.data.order ?? 99) - (b.data.order ?? 99) ||
+    a.data.title.localeCompare(b.data.title)
+);
+const groups = [
+  ['primitive', 'Essentials'],
+  ['form', 'Forms'],
+  ['navigation', 'Navigation'],
+  ['overlay', 'Overlays'],
+  ['data-display', 'Data & feedback'],
+  ['layout', 'Layouts'],
+  ['game', 'Learning']
+];
+const modules = import.meta.glob<{ default: any }>('../ui/*/preview.astro', {
+  eager: true
+});
+---
+
+<BaseLayout
+  title='Playground'
+  description='Try the freeCodeCamp components. Copy React source, CSS, or a complete Markdown reference into your project.'
+  markdown='/llms.txt'
+>
+  <main id='main' class='wrap' tabindex='-1'>
+    <header class='page-intro playground-intro'>
+      <p class='eyebrow'>The component playground</p><h1>
+        Find your<br /><span class='muted'>building blocks.</span>
+      </h1><p>Try it here. Make it yours there.</p><div class='intro-meta'>
+        <span>{entries.length} components · React + CSS</span><a
+          href='/handbook#using-components'>First time? Set up your theme →</a
+        >
+      </div>
+    </header>
+    <div class='catalog-layout' data-playground>
+      <aside class='catalog-nav' aria-label='Component navigation'>
+        <label for='component-filter' class='eyebrow'>Find a component</label>
+        <input
+          id='component-filter'
+          class='input'
+          type='search'
+          placeholder='Search components…'
+          data-component-filter
+        />
+        <nav aria-label='Components'>
+          {
+            groups.map(([category, label]) => (
+              <div data-nav-group>
+                <h2>{label}</h2>
+                {entries
+                  .filter(e => e.data.category === category)
+                  .map(e => (
+                    <a href={`#${e.id}`} data-component-link={e.id}>
+                      {e.data.title}
+                    </a>
+                  ))}
+              </div>
+            ))
+          }
+        </nav>
+        <a class='agent-link' href='/llms.txt'>Building with an agent? ↗</a>
+      </aside>
+      <div class='catalog-content'>
+        <p class='filter-status' role='status' data-filter-status></p>
+        {
+          groups.map(([category, label]) => (
+            <section class='catalog-group' data-component-group>
+              <h2 class='group-title'>{label}</h2>
+              {entries
+                .filter(e => e.data.category === category)
+                .map(entry => {
+                  const Showcase =
+                    modules[`../ui/${entry.id}/preview.astro`]?.default;
+                  if (!Showcase)
+                    throw new Error(`Missing preview: ${entry.id}`);
+                  return (
+                    <div
+                      data-component={entry.id}
+                      data-search={`${entry.data.title} ${entry.data.summary} ${label}`}
+                    >
+                      <Showcase />
+                    </div>
+                  );
+                })}
+            </section>
+          ))
+        }
+      </div>
+    </div>
+  </main>
+  <script>
+    import { wirePlayground } from '../scripts/playground';
+    wirePlayground(document);
+  </script>
+</BaseLayout>
