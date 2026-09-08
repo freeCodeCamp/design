@@ -66,8 +66,13 @@ summary {
   width: 192px;
   height: auto;
 }
-.light-palette .brand-link img {
-  filter: brightness(0);
+.brand-link .brand-wordmark-dark,
+.brand-link .brand-glyph,
+.light-palette .brand-link .brand-wordmark-light {
+  display: none;
+}
+.light-palette .brand-link .brand-wordmark-dark {
+  display: block;
 }
 .brand-link span {
   border-left: 1px solid var(--site-line);
@@ -77,19 +82,25 @@ summary {
 }
 .site-header nav {
   display: flex;
+  align-self: stretch;
   gap: 28px;
   margin-left: auto;
 }
 .site-header nav a {
+  display: flex;
+  align-items: center;
   white-space: nowrap;
   color: var(--foreground-muted);
   font-size: 16px;
-  padding-block: 14px;
+  padding-block: 0;
   text-decoration: none;
 }
 .site-header nav a[aria-current] {
   color: var(--foreground-primary);
   box-shadow: inset 0 -3px var(--yellow-style);
+}
+.site-header nav a:focus-visible {
+  outline-offset: -3px;
 }
 .site-icon,
 .site-icon svg {
@@ -153,6 +164,9 @@ summary {
 }
 .home-hero h1 > span {
   color: var(--yellow-style);
+}
+.light-palette .home-hero h1 > span {
+  color: var(--foreground-primary);
 }
 .cursor-mark {
   display: inline-block;
@@ -686,6 +700,19 @@ summary {
   font-size: 13px;
   line-height: 1.7;
 }
+.astro-code,
+.astro-code span {
+  color: var(--shiki-dark);
+  background-color: var(--shiki-dark-bg);
+}
+.astro-code code {
+  color: inherit;
+}
+.light-palette .astro-code,
+.light-palette .astro-code span {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
+}
 .source-note {
   font-size: 13px;
   color: var(--foreground-muted);
@@ -815,9 +842,6 @@ summary {
   .header-inner {
     gap: 20px;
   }
-  .brand-link img {
-    width: 154px;
-  }
   .brand-link span {
     display: none;
   }
@@ -847,14 +871,11 @@ summary {
   .header-inner {
     gap: 8px;
   }
-  .brand-link img {
-    width: 112px;
-  }
   .site-header nav {
     gap: 10px;
   }
   .site-header nav a {
-    font-size: 12px;
+    font-size: 14px;
   }
   .theme-options button {
     width: 28px;
@@ -1005,20 +1026,21 @@ summary {
 @media (max-width: 400px) {
   .header-inner {
     width: calc(100% - 16px);
-  }
-  .brand-link img {
-    width: 82px;
+    gap: 4px;
   }
   .site-header nav {
-    gap: 6px;
-  }
-  .site-header nav a {
-    font-size: 11px;
+    gap: 4px;
   }
 }
 
-@media (max-width: 340px) {
-  .brand-link img {
-    width: 56px;
+@media (max-width: 600px) {
+  .brand-link .brand-wordmark,
+  .light-palette .brand-link .brand-wordmark {
+    display: none;
+  }
+  .brand-link .brand-glyph {
+    display: block;
+    width: 24px;
+    height: 24px;
   }
 }

@@ -12,11 +12,12 @@
   flex: 1 1 auto;
   padding: 24px;
   min-width: 0;
+  overflow-wrap: anywhere;
 }
 .stacked-layout__footer {
   flex: 0 0 auto;
   padding: 16px 24px;
-  border-top: var(--border-width-thin) solid var(--foreground-secondary);
+  border-top: var(--border-width-hair) solid var(--foreground-secondary);
   color: var(--foreground-secondary);
   font-size: var(--fs-sm);
 }

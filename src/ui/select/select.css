@@ -6,7 +6,7 @@
   line-height: var(--lh-base);
   color: var(--foreground-primary);
   background-color: var(--background-quaternary);
-  border: var(--border-width-thin) solid var(--foreground-secondary);
+  border: var(--border-width-hair) solid var(--foreground-secondary);
   padding: 6px 32px 6px 10px;
   appearance: none;
   -webkit-appearance: none;
@@ -20,7 +20,7 @@
     background-color 120ms;
 }
 .select:focus-visible {
-  outline: none;
+  outline: var(--focus-outline-width) solid var(--focus-outline-color);
   border-color: var(--foreground-primary);
 }
 .select[aria-invalid='true'] {

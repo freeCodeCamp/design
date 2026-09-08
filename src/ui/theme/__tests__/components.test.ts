@@ -34,6 +34,17 @@ describe('components.css aggregator', () => {
 });
 
 describe('components.css', () => {
+  it('resolves required CSS variables from the shared theme and components', () => {
+    const styles = `${readFileSync(resolve(here, '../tokens.css'), 'utf8')}\n${components}`;
+    const declarations = new Set(
+      [...styles.matchAll(/(--[\w-]+)\s*:/g)].map(match => match[1])
+    );
+    const required = new Set(
+      [...styles.matchAll(/var\((--[\w-]+)\)/g)].map(match => match[1])
+    );
+    expect([...required].filter(name => !declarations.has(name))).toEqual([]);
+  });
+
   it('declares the canonical button selector', () => {
     expect(components).toMatch(/^\.btn\s*\{/m);
   });

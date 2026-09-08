@@ -48,12 +48,14 @@ if (!example) throw new Error(`Missing example: ${id}`);
         <h4>Example</h4><button type='button' data-copy-target={`${id}-example`}
           >Copy example</button
         >
-      </div><div id={`${id}-example`}><Code lang='tsx' code={example} /></div><p
-        data-copy-status
-        role='status'
-        class='copy-status'
-      >
-      </p>
+      </div><div id={`${id}-example`}>
+        <Code
+          lang='tsx'
+          code={example}
+          themes={{ light: 'github-light', dark: 'github-dark' }}
+          defaultColor={false}
+        />
+      </div><p data-copy-status role='status' class='copy-status'></p>
     </div>
     <h4 class='source-title'>Files to copy</h4>
     <p class='source-note'>
