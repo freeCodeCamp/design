@@ -1,4 +1,5 @@
 ---
+import ThemeOptions from './ThemeOptions.astro';
 const current = Astro.url.pathname.replace(/\/$/, '') || '/';
 const links = [
   ['/', 'Overview'],
@@ -11,8 +12,23 @@ const links = [
   <div class='wrap header-inner'>
     <a class='brand-link' href='/' aria-label='freeCodeCamp Design home'>
       <img
+        class='brand-wordmark brand-wordmark-light'
         src='/brand/fcc-primary.svg'
         width='210'
+        height='24'
+        alt='freeCodeCamp'
+      />
+      <img
+        class='brand-wordmark brand-wordmark-dark'
+        src='/brand/fcc-secondary.svg'
+        width='210'
+        height='24'
+        alt='freeCodeCamp'
+      />
+      <img
+        class='brand-glyph'
+        src='/brand/fcc-puck.svg'
+        width='24'
         height='24'
         alt='freeCodeCamp'
       />
@@ -27,12 +43,6 @@ const links = [
         ))
       }
     </nav>
-    <button
-      class='theme-toggle'
-      type='button'
-      data-theme-toggle
-      aria-label='Light theme'
-      aria-pressed='false'>Light theme</button
-    >
+    <ThemeOptions />
   </div>
 </header>

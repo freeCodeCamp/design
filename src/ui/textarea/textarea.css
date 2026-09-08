@@ -7,7 +7,7 @@
   line-height: var(--lh-base);
   color: var(--foreground-primary);
   background-color: var(--background-primary);
-  border: var(--border-width-thin) solid var(--foreground-secondary);
+  border: var(--border-width-hair) solid var(--foreground-secondary);
   padding: 8px 10px;
   resize: vertical;
   transition:
@@ -15,7 +15,7 @@
     background-color 120ms;
 }
 .textarea:focus-visible {
-  outline: none;
+  outline: var(--focus-outline-width) solid var(--focus-outline-color);
   border-color: var(--foreground-primary);
 }
 .textarea[aria-invalid='true'] {

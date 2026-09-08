@@ -61,29 +61,9 @@ const canonical = new URL(Astro.url.pathname, CANONICAL_SITE);
     </footer>
     <script>
       import { wireCopy } from '../scripts/copy';
+      import { wireTheme } from '../scripts/theme';
       wireCopy(document);
-      const toggle = document.querySelector<HTMLButtonElement>(
-        '[data-theme-toggle]'
-      );
-      const syncTheme = () => {
-        const light =
-          document.documentElement.classList.contains('light-palette');
-        toggle?.setAttribute('aria-pressed', String(light));
-        toggle?.setAttribute('aria-label', 'Light theme');
-        if (toggle) toggle.textContent = light ? 'Dark theme' : 'Light theme';
-      };
-      syncTheme();
-      toggle?.addEventListener('click', () => {
-        const light =
-          !document.documentElement.classList.contains('light-palette');
-        document.documentElement.className = light
-          ? 'light-palette'
-          : 'dark-palette';
-        try {
-          localStorage.setItem('fcc-palette', light ? 'light' : 'dark');
-        } catch {}
-        syncTheme();
-      });
+      wireTheme(document);
     </script>
   </body>
 </html>

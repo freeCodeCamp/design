@@ -6,5 +6,10 @@ export default defineConfig({
   site: 'https://design.freecodecamp.org',
   integrations: [react(), sitemap()],
   devToolbar: { enabled: false },
-  markdown: { shikiConfig: { theme: 'github-dark' } }
+  markdown: {
+    shikiConfig: {
+      themes: { light: 'github-light', dark: 'github-dark' },
+      defaultColor: false
+    }
+  }
 });

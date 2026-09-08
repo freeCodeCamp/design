@@ -19,7 +19,7 @@
   padding: 12px 14px;
   background: var(--background-quaternary);
   color: var(--foreground-primary);
-  border: var(--border-width-thin) solid var(--foreground-secondary);
+  border: var(--border-width-hair) solid var(--foreground-secondary);
   border-left-width: 4px;
   border-left-color: var(--highlight-color);
   box-shadow:
@@ -62,7 +62,7 @@
 }
 .toast__description {
   margin: 0;
-  font-size: var(--fs-xs);
+  font-size: var(--fs-sm);
   line-height: 1.45;
   color: var(--foreground-secondary);
 }

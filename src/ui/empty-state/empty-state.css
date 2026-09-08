@@ -22,7 +22,7 @@
 }
 .empty-state__title {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-sans);
   font-size: var(--fs-lg);
   font-weight: 600;
   color: var(--foreground-primary);

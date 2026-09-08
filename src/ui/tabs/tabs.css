@@ -1,7 +1,10 @@
 .tabs {
+  min-width: 0;
+  max-width: 100%;
 }
 .tabs__list {
   display: flex;
+  flex-wrap: wrap;
   border-bottom: 1px solid var(--foreground-quaternary);
   padding: 0;
   margin: 0;
@@ -18,6 +21,9 @@
 }
 .tabs__tab:hover {
   background: var(--background-tertiary);
+}
+.tabs__tab:focus-visible {
+  outline-offset: -3px;
 }
 .tabs__tab[aria-selected='true'] {
   font-weight: 700;

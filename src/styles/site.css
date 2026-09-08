@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 html {
-  scroll-padding-top: 110px;
+  scroll-padding-top: 64px;
 }
 body {
   margin: 0;
@@ -48,7 +48,7 @@ summary {
   border-bottom: 1px solid var(--site-line);
 }
 .header-inner {
-  min-height: 88px;
+  height: 47px;
   display: flex;
   align-items: center;
   gap: 32px;
@@ -66,8 +66,13 @@ summary {
   width: 192px;
   height: auto;
 }
-.light-palette .brand-link img {
-  filter: brightness(0);
+.brand-link .brand-wordmark-dark,
+.brand-link .brand-glyph,
+.light-palette .brand-link .brand-wordmark-light {
+  display: none;
+}
+.light-palette .brand-link .brand-wordmark-dark {
+  display: block;
 }
 .brand-link span {
   border-left: 1px solid var(--site-line);
@@ -77,28 +82,59 @@ summary {
 }
 .site-header nav {
   display: flex;
+  align-self: stretch;
   gap: 28px;
   margin-left: auto;
 }
 .site-header nav a {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
   color: var(--foreground-muted);
   font-size: 16px;
-  padding-block: 32px;
+  padding-block: 0;
   text-decoration: none;
 }
 .site-header nav a[aria-current] {
   color: var(--foreground-primary);
   box-shadow: inset 0 -3px var(--yellow-style);
 }
-.theme-toggle {
-  background: none;
+.site-header nav a:focus-visible {
+  outline-offset: -3px;
+}
+.site-icon,
+.site-icon svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+.theme-options {
+  display: inline-flex;
+  flex-shrink: 0;
+  gap: 2px;
+  padding: 2px;
   border: 1px solid var(--site-line);
-  color: var(--foreground-primary);
-  padding: 9px 12px;
-  font-family: var(--font-mono);
-  font-size: 12px;
+}
+.theme-options button {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--foreground-muted);
   cursor: pointer;
-  min-width: 110px;
+}
+.theme-options button:hover {
+  color: var(--foreground-primary);
+  background: var(--background-secondary);
+}
+.theme-options button[aria-pressed='true'] {
+  color: var(--foreground-primary);
+  background: var(--background-quaternary);
+  box-shadow: inset 0 -2px var(--yellow-style);
 }
 .eyebrow,
 .mono {
@@ -116,7 +152,7 @@ summary {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
   align-items: center;
-  gap: 64px;
+  gap: 32px;
   padding-block: 88px 96px;
 }
 .home-hero h1 {
@@ -128,6 +164,9 @@ summary {
 }
 .home-hero h1 > span {
   color: var(--yellow-style);
+}
+.light-palette .home-hero h1 > span {
+  color: var(--foreground-primary);
 }
 .cursor-mark {
   display: inline-block;
@@ -309,7 +348,7 @@ summary {
 .home-next > div:first-of-type {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 80px;
+  gap: 40px;
   align-items: center;
 }
 .home-next h2 {
@@ -325,8 +364,8 @@ summary {
 .destination-links {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 32px;
-  margin-top: 40px;
+  gap: 16px;
+  margin-top: 32px;
 }
 .destination-links a {
   border-top: 1px solid var(--site-line);
@@ -411,15 +450,15 @@ summary {
 .guide-layout {
   display: grid;
   grid-template-columns: 220px minmax(0, 1fr);
-  gap: 64px;
+  gap: 32px;
   align-items: start;
   padding-block: 48px 80px;
 }
 .catalog-nav,
 .guide-nav {
   position: sticky;
-  top: 112px;
-  max-height: calc(100dvh - 140px);
+  top: 72px;
+  max-height: calc(100dvh - 96px);
   overflow: auto;
   scrollbar-width: thin;
   padding: 5px 12px 12px 5px;
@@ -478,12 +517,12 @@ summary {
   margin: 0;
 }
 .catalog-group + .catalog-group {
-  margin-top: 64px;
+  margin-top: 40px;
 }
 .component-card {
-  padding: 32px 0;
+  padding: 24px 0;
   border-bottom: 1px solid var(--site-line);
-  scroll-margin-top: 110px;
+  scroll-margin-top: 40px;
 }
 .component-heading {
   display: flex;
@@ -510,6 +549,9 @@ summary {
   line-height: 1.5;
 }
 .copy-markdown {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   flex-shrink: 0;
   font: 12px var(--font-mono);
   color: var(--foreground-primary);
@@ -536,8 +578,8 @@ summary {
   justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
-  min-height: 180px;
-  padding: 40px 28px;
+  min-height: 144px;
+  padding: 24px;
   color: var(--foreground-primary);
   background-color: hsl(from var(--background-secondary) h 6% l);
   background-image:
@@ -550,7 +592,7 @@ summary {
       color-mix(in srgb, var(--foreground-primary) 5%, transparent) 1px,
       transparent 1px
     );
-  background-size: 16px 16px;
+  background-size: 12px 12px;
   border: 1px solid var(--site-line);
   overflow: visible;
 }
@@ -565,13 +607,6 @@ summary {
   border: 1px solid var(--site-line);
   border-bottom: 0;
   font: 12px var(--font-mono);
-}
-.preview-toolbar select {
-  padding: 6px 8px;
-  color: var(--foreground-primary);
-  background: var(--background-primary);
-  border: 1px solid var(--site-line);
-  font: inherit;
 }
 .component-preview
   > :is(astro-island, div, form, fieldset, figure, nav, ul, p) {
@@ -665,6 +700,19 @@ summary {
   font-size: 13px;
   line-height: 1.7;
 }
+.astro-code,
+.astro-code span {
+  color: var(--shiki-dark);
+  background-color: var(--shiki-dark-bg);
+}
+.astro-code code {
+  color: inherit;
+}
+.light-palette .astro-code,
+.light-palette .astro-code span {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
+}
 .source-note {
   font-size: 13px;
   color: var(--foreground-muted);
@@ -755,7 +803,7 @@ summary {
 .guide-content .swatches {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  gap: 8px;
   margin-block: 24px;
 }
 .guide-content .swatch {
@@ -794,9 +842,6 @@ summary {
   .header-inner {
     gap: 20px;
   }
-  .brand-link img {
-    width: 154px;
-  }
   .brand-link span {
     display: none;
   }
@@ -821,35 +866,23 @@ summary {
 }
 @media (max-width: 760px) {
   .wrap {
-    width: calc(100% - 40px);
+    width: calc(100% - 32px);
   }
   .header-inner {
-    min-height: 100px;
-    gap: 0;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    padding-top: 18px;
-  }
-  .brand-link img {
-    width: 168px;
+    gap: 8px;
   }
   .site-header nav {
-    grid-row: 2;
-    grid-column: 1 / -1;
-    margin: 8px 0 0;
-    gap: 28px;
+    gap: 10px;
   }
   .site-header nav a {
-    padding-block: 12px 14px;
     font-size: 14px;
   }
-  .theme-toggle {
-    font-size: 10px;
-    min-width: 90px;
+  .theme-options button {
+    width: 28px;
   }
   .home-hero {
     grid-template-columns: 1fr;
-    gap: 48px;
+    gap: 32px;
     padding-block: 48px;
   }
   .home-hero h1 {
@@ -988,4 +1021,26 @@ summary {
 .source-file a {
   overflow-wrap: anywhere;
   min-width: 0;
+}
+
+@media (max-width: 400px) {
+  .header-inner {
+    width: calc(100% - 16px);
+    gap: 4px;
+  }
+  .site-header nav {
+    gap: 4px;
+  }
+}
+
+@media (max-width: 600px) {
+  .brand-link .brand-wordmark,
+  .light-palette .brand-link .brand-wordmark {
+    display: none;
+  }
+  .brand-link .brand-glyph {
+    display: block;
+    width: 24px;
+    height: 24px;
+  }
 }

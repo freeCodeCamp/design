@@ -9,7 +9,12 @@ export function Actions() {
         const target = (event.target as Element).closest('button');
         if (target && !target.disabled) setAction(target.textContent ?? '');
       }}
-      style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        gap: 12
+      }}
     >
       <Button variant='cta'>Start curriculum</Button>
       <Button variant='default'>Secondary</Button>

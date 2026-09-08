@@ -5,7 +5,7 @@
   min-height: 56px;
   padding: 8px 16px;
   background: var(--background-primary);
-  border-bottom: var(--border-width-thin) solid var(--foreground-secondary);
+  border-bottom: var(--border-width-hair) solid var(--foreground-secondary);
   color: var(--foreground-primary);
   font-family: var(--font-sans);
   font-size: var(--fs-md);

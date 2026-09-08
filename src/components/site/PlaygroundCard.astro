@@ -1,4 +1,6 @@
 ---
+import Icon from './Icon.astro';
+import ThemeOptions from './ThemeOptions.astro';
 import { componentItem } from '../../lib/registry';
 import { copyBundle } from '../../lib/registry-md';
 import { getEntry } from 'astro:content';
@@ -25,21 +27,13 @@ if (!example) throw new Error(`Missing example: ${id}`);
       class='copy-markdown'
       type='button'
       data-copy-url={`/components/${id}.md`}
-      >Copy as Markdown <span aria-hidden='true'>↗</span></button
+      ><Icon name='copy' /> Copy as Markdown</button
     >
   </header>
   <p class='copy-status' data-copy-status role='status'></p>
   <div class='preview-toolbar'>
-    <label for={`${id}-theme`}>Preview theme</label>
-    <select
-      id={`${id}-theme`}
-      data-preview-theme
-      aria-controls={`${id}-preview`}
-    >
-      <option value=''>Page theme</option>
-      <option value='light'>Light</option>
-      <option value='dark'>Dark</option>
-    </select>
+    <span>Preview theme</span>
+    <ThemeOptions preview={`${id}-preview`} />
   </div>
   <div
     id={`${id}-preview`}
@@ -54,12 +48,14 @@ if (!example) throw new Error(`Missing example: ${id}`);
         <h4>Example</h4><button type='button' data-copy-target={`${id}-example`}
           >Copy example</button
         >
-      </div><div id={`${id}-example`}><Code lang='tsx' code={example} /></div><p
-        data-copy-status
-        role='status'
-        class='copy-status'
-      >
-      </p>
+      </div><div id={`${id}-example`}>
+        <Code
+          lang='tsx'
+          code={example}
+          themes={{ light: 'github-light', dark: 'github-dark' }}
+          defaultColor={false}
+        />
+      </div><p data-copy-status role='status' class='copy-status'></p>
     </div>
     <h4 class='source-title'>Files to copy</h4>
     <p class='source-note'>

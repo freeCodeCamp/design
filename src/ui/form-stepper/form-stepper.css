@@ -11,7 +11,7 @@
   list-style: none;
   display: flex;
   gap: 8px;
-  border: var(--border-width-thin) solid var(--foreground-secondary);
+  border: var(--border-width-hair) solid var(--foreground-secondary);
   background: var(--background-tertiary);
   padding: 4px;
 }
@@ -32,7 +32,7 @@
   text-align: left;
   color: var(--foreground-secondary);
   cursor: pointer;
-  font-family: var(--font-body);
+  font-family: var(--font-sans);
 }
 .form-stepper__step[data-state='current'] .form-stepper__step-btn,
 .form-stepper__step[data-state='complete'] .form-stepper__step-btn {
@@ -53,8 +53,8 @@
   align-items: center;
   justify-content: center;
   font-family: var(--font-mono);
-  font-size: var(--fs-xs);
-  border: var(--border-width-thin) solid var(--foreground-secondary);
+  font-size: var(--fs-sm);
+  border: var(--border-width-hair) solid var(--foreground-secondary);
   color: var(--foreground-secondary);
 }
 .form-stepper__step[data-state='current'] .form-stepper__step-index {
@@ -80,7 +80,7 @@
   white-space: nowrap;
 }
 .form-stepper__step-description {
-  font-size: var(--fs-xs);
+  font-size: var(--fs-sm);
   color: var(--foreground-secondary);
   line-height: 1.4;
   overflow: hidden;

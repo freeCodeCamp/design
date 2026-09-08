@@ -26,7 +26,7 @@
   font-size: inherit;
   color: var(--foreground-secondary);
   background: transparent;
-  border: var(--border-width-thin) solid var(--foreground-secondary);
+  border: var(--border-width-hair) solid var(--foreground-secondary);
   cursor: pointer;
   transition:
     color 120ms,

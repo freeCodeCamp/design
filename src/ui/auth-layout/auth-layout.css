@@ -35,7 +35,7 @@
   max-width: 400px;
   padding: 24px;
   background: var(--background-quaternary);
-  border: var(--border-width-thin) solid var(--foreground-secondary);
+  border: var(--border-width-hair) solid var(--foreground-secondary);
 }
 .auth-layout__footer {
   color: var(--foreground-secondary);

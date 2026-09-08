@@ -1,4 +1,5 @@
 import { expect, test } from 'vitest';
+import { wireTheme } from './theme';
 import { wirePlayground } from './playground';
 
 test('filters previews and navigation, reports no matches, and reveals a linked component', () => {
@@ -29,21 +30,34 @@ test('filters previews and navigation, reports no matches, and reveals a linked 
   );
 });
 
-test('preview themes are independent and can return to the page theme', () => {
+test('preview theme buttons select an explicit palette independently', () => {
+  document.documentElement.className = 'light-palette';
   document.body.innerHTML =
-    '<input data-component-filter><select data-preview-theme aria-controls="first"><option value="">Page theme</option><option value="light">Light</option><option value="dark">Dark</option></select><div id="first"></div><div id="second"></div>';
-  wirePlayground(document);
-  const select = document.querySelector('select')!;
-  select.value = 'light';
-  select.dispatchEvent(new Event('change', { bubbles: true }));
-  expect(
-    document.getElementById('first')!.classList.contains('light-palette')
-  ).toBe(true);
-  expect(document.getElementById('second')!.className).toBe('');
-  select.value = 'dark';
-  select.dispatchEvent(new Event('change', { bubbles: true }));
+    '<div data-theme-options><button data-theme="light" aria-controls="first"></button><button data-theme="dark" aria-controls="first"></button></div><div id="first"></div><div id="second"></div>';
+  wireTheme(document);
+  const light = document.querySelector<HTMLButtonElement>(
+    '[data-theme="light"]'
+  )!;
+  const dark = document.querySelector<HTMLButtonElement>(
+    '[data-theme="dark"]'
+  )!;
+  expect(light.getAttribute('aria-pressed')).toBe('true');
+  dark.click();
   expect(document.getElementById('first')!.className).toBe('dark-palette');
-  select.value = '';
-  select.dispatchEvent(new Event('change', { bubbles: true }));
-  expect(document.getElementById('first')!.className).toBe('');
+  expect(document.getElementById('second')!.className).toBe('');
+  expect(dark.getAttribute('aria-pressed')).toBe('true');
+  expect(light.getAttribute('aria-pressed')).toBe('false');
+  light.click();
+  expect(document.getElementById('first')!.className).toBe('light-palette');
+});
+
+test('page theme buttons persist the palette without changing an explicit preview', () => {
+  document.documentElement.className = 'dark-palette';
+  document.body.innerHTML =
+    '<div data-theme-options><button data-theme="light"></button><button data-theme="dark"></button></div><div id="preview" class="dark-palette"></div>';
+  wireTheme(document);
+  document.querySelector('button')!.click();
+  expect(document.documentElement.className).toBe('light-palette');
+  expect(localStorage.getItem('fcc-palette')).toBe('light');
+  expect(document.getElementById('preview')!.className).toBe('dark-palette');
 });

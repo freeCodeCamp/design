@@ -4,7 +4,7 @@
   gap: 4px;
   padding: 16px 8px;
   background: var(--background-primary);
-  border-right: var(--border-width-thin) solid var(--foreground-secondary);
+  border-right: var(--border-width-hair) solid var(--foreground-secondary);
   font-family: var(--font-sans);
   font-size: var(--fs-md);
   color: var(--foreground-primary);
@@ -17,12 +17,12 @@
 }
 .sidebar__intro {
   padding: 0 12px 12px;
-  border-bottom: var(--border-width-thin) solid var(--background-tertiary);
+  border-bottom: var(--border-width-hair) solid var(--background-tertiary);
   margin-bottom: 12px;
 }
 .sidebar__intro-kicker {
   font-family: var(--font-mono);
-  font-size: var(--fs-xs);
+  font-size: var(--fs-sm);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--foreground-secondary);
@@ -38,7 +38,7 @@
 .sidebar__hint {
   padding: 12px 16px;
   font-family: var(--font-mono);
-  font-size: var(--fs-xs);
+  font-size: var(--fs-sm);
   color: var(--foreground-secondary);
   line-height: 1.5;
 }
@@ -49,11 +49,11 @@
   padding: 8px 0;
 }
 .sidebar__section + .sidebar__section {
-  border-top: var(--border-width-thin) dashed var(--background-tertiary);
+  border-top: var(--border-width-hair) dashed var(--background-tertiary);
 }
 .sidebar__eyebrow {
   font-family: var(--font-mono);
-  font-size: var(--fs-xs);
+  font-size: var(--fs-sm);
   font-weight: var(--fw-bold);
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -90,7 +90,7 @@
   font-weight: var(--fw-bold);
 }
 .sidebar__item:focus-visible {
-  outline: var(--border-width-thin) solid var(--foreground-primary);
+  outline: var(--border-width-hair) solid var(--foreground-primary);
   outline-offset: -2px;
 }
 .sidebar__icon {
@@ -127,7 +127,7 @@
 }
 .sidebar__section__caret {
   display: inline-block;
-  font-size: var(--fs-xs);
+  font-size: var(--fs-sm);
   color: var(--foreground-secondary);
   transition: transform 160ms ease;
 }
