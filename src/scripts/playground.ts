@@ -1,15 +1,4 @@
 export function wirePlayground(root: Document): void {
-  root
-    .querySelectorAll<HTMLSelectElement>('[data-preview-theme]')
-    .forEach(select => {
-      select.addEventListener('change', () => {
-        const preview = root.getElementById(
-          select.getAttribute('aria-controls') ?? ''
-        );
-        preview?.classList.toggle('light-palette', select.value === 'light');
-        preview?.classList.toggle('dark-palette', select.value === 'dark');
-      });
-    });
   const input = root.querySelector<HTMLInputElement>('[data-component-filter]');
   if (!input) return;
   const entries = [...root.querySelectorAll<HTMLElement>('[data-component]')];

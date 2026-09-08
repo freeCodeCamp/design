@@ -1,0 +1,29 @@
+---
+import Icon from './Icon.astro';
+interface Props {
+  preview?: string;
+}
+const { preview } = Astro.props;
+---
+
+<div
+  class='theme-options'
+  role='group'
+  aria-label={preview ? 'Preview theme' : 'Page theme'}
+  data-theme-options
+>
+  {
+    (['light', 'dark'] as const).map(theme => (
+      <button
+        type='button'
+        data-theme={theme}
+        aria-controls={preview}
+        aria-label={`${theme === 'light' ? 'Light' : 'Dark'} theme`}
+        title={`${theme === 'light' ? 'Light' : 'Dark'} theme`}
+        aria-pressed={theme === 'dark' ? 'true' : 'false'}
+      >
+        <Icon name={theme} />
+      </button>
+    ))
+  }
+</div>

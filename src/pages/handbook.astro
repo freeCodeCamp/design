@@ -1,4 +1,5 @@
 ---
+import Icon from '../components/site/Icon.astro';
 import { getEntry, render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 const entry = await getEntry('guide', 'style-guide');
@@ -17,7 +18,7 @@ const { Content, headings } = await render(entry);
         A shared language.<br /><span class='muted'>A familiar feeling.</span>
       </h1><p>{entry.data.description}</p><div class='actions'>
         <button class='copy-markdown' type='button' data-copy-url='/handbook.md'
-          >Copy as Markdown ↗</button
+          ><Icon name='copy' /> Copy as Markdown</button
         ><a class='text-link' href='/brand/asset-kit.zip' download
           >Download brand assets ↓</a
         >
