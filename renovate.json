@@ -3,28 +3,6 @@
   "extends": ["github>freeCodeCamp/renovate-config"],
   "packageRules": [
     {
-      "description": "Auto-merge dev-tooling minor + patch updates",
-      "matchDepTypes": ["devDependencies"],
-      "matchUpdateTypes": ["minor", "patch"],
-      "matchPackageNames": [
-        "@types/**",
-        "oxlint",
-        "oxfmt",
-        "prettier",
-        "prettier-**",
-        "vitest",
-        "@vitest/**",
-        "@testing-library/**",
-        "jsdom",
-        "is-ci",
-        "husky",
-        "lint-staged"
-      ],
-      "automerge": true,
-      "automergeType": "pr",
-      "automergeStrategy": "squash"
-    },
-    {
       "description": "Hold majors of every dep for human review",
       "matchUpdateTypes": ["major"],
       "automerge": false
